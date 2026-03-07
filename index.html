@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BareAesthetic</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="liquid-glass-nav">
+    <ul>
+      <li><a href="#home" class="tab-link active">Главная</a></li>
+      <li><a href="#about" class="tab-link">О моде</a></li>
+      <li><a href="#purchase" class="tab-link">Покупка</a></li>
+      <li><a href="#profile" class="tab-link">Профиль</a></li>
+    </ul>
+  </nav>
+
+  <div id="home" class="tab-content active">
+    <h1>BareAesthetic</h1>
+    <p>Мод для Minecraft 1.16.5</p>
+  </div>
+
+  <div id="about" class="tab-content">
+    <h1>О моде</h1>
+    <p>Эстетичный мод для версии 1.16.5</p>
+  </div>
+
+  <div id="purchase" class="tab-content">
+    <h1>Покупка</h1>
+    <p>Покупки будут скоро доступны</p>
+  </div>
+
+  <div id="profile" class="tab-content">
+    <h1>Профиль</h1>
+    <form id="login-form">
+      <input type="email" placeholder="Email" required>
+      <input type="password" placeholder="Пароль" required>
+      <button type="submit">Войти</button>
+      <button type="button" id="register">Зарегистрироваться</button>
+      <button type="button" id="google-login">Войти через Gmail</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
