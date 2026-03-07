@@ -1,24 +1,28 @@
 body {
-  background: url('wooden-background.jpg') no-repeat center/cover;
+  background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.6)), 
+              url('wooden-background.jpg') no-repeat center/cover fixed;
+  background-color: #3c2f2f; /* тёмно-коричневый fallback, если картинка не загрузится */
   color: #fff;
-  font-family: Arial, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
   min-height: 100vh;
 }
 
 .liquid-glass-nav {
-  background: rgba(139, 69, 19, 0.3);
-  backdrop-filter: blur(15px) saturate(150%);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-  border-radius: 25px;
+  background: rgba(139, 69, 19, 0.25); /* полупрозрачный деревянный */
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+  border-radius: 20px;
   position: fixed;
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 10px;
+  padding: 12px 20px;
   z-index: 1000;
+  max-width: 90%;
 }
 
 .liquid-glass-nav ul {
@@ -26,30 +30,29 @@ body {
   display: flex;
   margin: 0;
   padding: 0;
-}
-
-.liquid-glass-nav li {
-  margin: 0 15px;
+  gap: 10px;
 }
 
 .liquid-glass-nav a {
   text-decoration: none;
   color: #fff;
-  padding: 10px 20px;
-  border-radius: 20px;
-  transition: background 0.3s;
+  padding: 10px 18px;
+  border-radius: 16px;
+  transition: all 0.3s;
+  font-weight: 500;
 }
 
 .liquid-glass-nav a.active,
 .liquid-glass-nav a:hover {
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2); /* лёгкий золотой блик */
 }
 
 .tab-content {
   display: none;
-  padding: 120px 20px 40px;
+  padding: 140px 20px 60px;
   text-align: center;
+  min-height: 80vh;
 }
 
 .tab-content.active {
@@ -57,57 +60,76 @@ body {
 }
 
 h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
+  font-size: 3.8rem;
+  margin: 0.5rem 0 1.5rem;
+  background: linear-gradient(135deg, #ffd86e 0%, #d19e1d 40%, #e3a812 70%, #ffd86e 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 
+    0 2px 10px rgba(255, 215, 0, 0.6),
+    0 4px 20px rgba(139, 69, 19, 0.4),
+    2px 2px 0 #8b4513,
+    -2px -2px 0 #8b4513;
+  letter-spacing: 1px;
+  font-weight: 900;
 }
 
 p {
-  font-size: 1.3rem;
+  font-size: 1.4rem;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.soon-text {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-top: 2rem;
+  background: linear-gradient(90deg, #ffd700, #ffaa00, #ffd700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
 }
 
 #login-form {
-  max-width: 340px;
-  margin: 40px auto;
+  max-width: 360px;
+  margin: 50px auto;
 }
 
 #login-form input,
 #login-form button {
   display: block;
   width: 100%;
-  margin: 12px 0;
-  padding: 14px;
+  margin: 15px 0;
+  padding: 16px;
   border-radius: 12px;
   border: none;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 #login-form input {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.12);
   color: #fff;
   backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 #login-form button {
-  background: rgba(139, 69, 19, 0.7);
+  background: linear-gradient(135deg, #d4a017, #b8860b);
   color: #fff;
   cursor: pointer;
-  transition: background 0.3s;
+  font-weight: bold;
+  transition: all 0.3s;
 }
 
 #login-form button:hover {
-  background: rgba(139, 69, 19, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(212, 160, 23, 0.5);
 }
 
 @media (max-width: 600px) {
-  .liquid-glass-nav {
-    width: 90%;
-    padding: 8px;
-  }
-  .liquid-glass-nav ul {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  .liquid-glass-nav li {
-    margin: 8px;
-  }
+  h1 { font-size: 2.8rem; }
+  .liquid-glass-nav { padding: 10px; }
+  .liquid-glass-nav ul { flex-wrap: wrap; justify-content: center; }
 }
