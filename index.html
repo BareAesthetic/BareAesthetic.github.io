@@ -1,61 +1,59 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>BareAesthetic</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css"/>
 </head>
-<body>
-  <nav class="liquid-glass-nav">
-    <ul>
-      <li><a href="#home" class="tab-link active">Главная</a></li>
-      <li><a href="#about" class="tab-link">О моде</a></li>
-      <li><a href="#purchase" class="tab-link">Покупка</a></li>
-      <li><a href="#profile" class="tab-link">Профиль</a></li>
-    </ul>
-    <!-- Toggle switch (солнце/луна, плавная анимация) -->
-    <div class="toggle-container">
-      <input type="checkbox" id="theme-toggle" class="toggle-checkbox">
-      <label for="theme-toggle" class="toggle-label">
-        <span class="toggle-sun">☀️</span>
-        <span class="toggle-moon">🌙</span>
-      </label>
+<body class="theme-forest">
+  <!-- Фон с частицами -->
+  <canvas id="bg-canvas"></canvas>
+
+  <nav class="glass-nav">
+    <div class="nav-left">
+      <a href="#home" class="tab active">Главная</a>
+      <a href="#about" class="tab">О моде</a>
+      <a href="#purchase" class="tab">Покупка</a>
+      <a href="#profile" class="tab">Профиль</a>
+    </div>
+    <div class="theme-picker">
+      <button data-theme="light">Свет</button>
+      <button data-theme="dark">Тёмная</button>
+      <button data-theme="gold">Золотая</button>
+      <button data-theme="forest" class="active">Лес</button>
     </div>
   </nav>
 
-  <div id="home" class="tab-content active liquid-glass-content">
-    <h1>BareAesthetic</h1>
-    <p>Мод для Minecraft 1.16.5</p>
-  </div>
+  <main class="content">
+    <section id="home" class="page active">
+      <h1>BareAesthetic</h1>
+      <p>Мод для Minecraft 1.16.5</p>
+    </section>
 
-  <div id="about" class="tab-content liquid-glass-content">
-    <h1>О моде</h1>
-    <p>BareAesthetic — это эстетичный мод для Minecraft 1.16.5, который фокусируется на минимализме и визуальной гармонии. Автор мода вложил душу в создание простых, но потрясающих визуалов, вдохновлённых природой и деревянными текстурами. Идея родилась из желания сделать игру более уютной и эстетичной, без лишней сложности — как будто Minecraft стал цифровым лесом, где каждый блок рассказывает историю спокойствия и красоты.</p>
-    <p>Ключевые особенности: улучшенные текстуры для блоков (особенно деревянных и природных), новые декоративные элементы вроде стилизованных лестниц, дверей и решёток на основе металлов и дерева. Автор потратил месяцы на полировку каждого пикселя, чтобы визуалы вызывали ощущение тепла и гармонии — представь, как свет пробивается сквозь листву в твоём мире, а деревянные структуры выглядят как часть живой природы. Это не просто мод, а способ погрузиться в эстетику "bare" (минималистичной) красоты, где меньше значит больше.</p>
-    <p>Визуалы BareAesthetic вдохновлены реальными эстетическими модами вроде Aesthetics (аддон для SimpleOres), но с уникальным акцентом на дерево и золото. Автор хотел, чтобы игроки чувствовали связь с миром: "Я вложил душу в эти текстуры, потому что Minecraft — это не только выживание, но и создание красоты. Каждый блок — как кисть художника, и я стремился к идеальному балансу простоты и элегантности." Совместим с Forge, скачай на Modrinth или CurseForge для полного погружения.</p>
-  </div>
+    <section id="about" class="page">
+      <h1>О моде</h1>
+      <p>BareAesthetic — это попытка сделать Minecraft уютнее и красивее без перегрузки текстурами и шейдерами.</p>
+      <p>Автор вложил очень много времени в подбор цветов, мягкие тени, естественное освещение дерева, камня и травы. Всё выглядит так, будто ты действительно в лесу, но при этом остаётся ванильный дух игры.</p>
+    </section>
 
-  <div id="purchase" class="tab-content liquid-glass-content">
-    <h1>Покупка</h1>
-    <p class="soon-text">Покупки будут скоро доступны</p>
-  </div>
+    <section id="purchase" class="page">
+      <h1>Покупка</h1>
+      <p class="soon">Покупки будут скоро доступны ✨</p>
+    </section>
 
-  <div id="profile" class="tab-content liquid-glass-content">
-    <h1>Профиль</h1>
-    <form id="login-form">
-      <input type="email" placeholder="Email" required>
-      <input type="password" placeholder="Пароль" required>
-      <button type="submit">Войти</button>
-      <button type="button" id="register">Зарегистрироваться</button>
-      <button type="button" id="google-login">Войти через Gmail</button>
-    </form>
-    <div id="avatar-section">
-      <p>Сменить аватарку (только JPG):</p>
-      <input type="file" id="avatar-input" accept="image/jpeg">
-      <img id="avatar-preview" src="" alt="Аватарка" style="display:none; max-width:200px; border-radius:50%; margin-top:10px;">
-    </div>
-  </div>
+    <section id="profile" class="page">
+      <h1>Профиль</h1>
+      <div class="profile-card glass">
+        <input type="file" id="avatar" accept="image/jpeg,image/png" hidden/>
+        <label for="avatar" class="avatar-preview">
+          <img src="https://via.placeholder.com/120?text=Ава" alt="Аватар"/>
+        </label>
+        <input type="text" placeholder="Никнейм" class="input"/>
+        <button class="btn">Сохранить</button>
+      </div>
+    </section>
+  </main>
 
   <script src="script.js"></script>
 </body>
