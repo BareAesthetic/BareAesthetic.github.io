@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BareAesthetic</title>
   <link rel="stylesheet" href="style.css">
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js"></script>
 </head>
 <body>
   <nav class="liquid-glass-nav">
@@ -14,6 +17,14 @@
       <li><a href="#purchase" class="tab-link">Покупка</a></li>
       <li><a href="#profile" class="tab-link">Профиль</a></li>
     </ul>
+    <!-- Toggle switch -->
+    <div class="toggle-container">
+      <input type="checkbox" id="theme-toggle" class="toggle-checkbox">
+      <label for="theme-toggle" class="toggle-label">
+        <span class="toggle-sun">☀️</span>
+        <span class="toggle-moon">🌙</span>
+      </label>
+    </div>
   </nav>
 
   <div id="home" class="tab-content active">
@@ -34,12 +45,18 @@
   <div id="profile" class="tab-content">
     <h1>Профиль</h1>
     <form id="login-form">
-      <input type="email" placeholder="Email" required>
-      <input type="password" placeholder="Пароль" required>
-      <button type="submit">Войти</button>
+      <input type="email" id="email" placeholder="Email" required>
+      <input type="password" id="password" placeholder="Пароль" required>
       <button type="button" id="register">Зарегистрироваться</button>
+      <button type="submit">Войти</button>
       <button type="button" id="google-login">Войти через Gmail</button>
     </form>
+    <div id="avatar-section">
+      <p>Сменить аватарку (только JPG):</p>
+      <input type="file" id="avatar-input" accept="image/jpeg">
+      <img id="avatar-preview" src="" alt="Аватарка" style="display:none; max-width:200px;">
+    </div>
+    <p id="auth-message"></p>
   </div>
 
   <script src="script.js"></script>
