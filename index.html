@@ -3,13 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BareAesthetic - Эстетичный мод для Minecraft 1.16.5</title>
+  <title>BareAesthetic</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <!-- Фон с анимациями -->
-  <div class="background-particles"></div>
-
+<body class="theme-dark">
   <nav class="glass-nav">
     <div class="logo">BareAesthetic</div>
     <ul>
@@ -19,62 +16,61 @@
       <li><a href="#faq" class="tab">FAQ</a></li>
       <li><a href="#profile" class="tab">Профиль</a></li>
     </ul>
-    <button class="reg-btn">Зарегистрироваться</button>
+    <div class="theme-toggle">
+      <input type="checkbox" id="theme-switch">
+      <label for="theme-switch" class="toggle-label">
+        <span class="sun">☀️</span>
+        <span class="moon">🌙</span>
+      </label>
+    </div>
   </nav>
 
-  <section id="home" class="section active">
-    <h1>Командный игровой</h1>
-    <h1>Мод с BareAesthetic.</h1>
-    <p>Красивые визуалы без изменения базовых текстур — просто делает Minecraft уютнее и эстетичнее.</p>
-    <button class="cta-btn">Скачать мод</button>
-  </section>
+  <main>
+    <section id="home" class="section active">
+      <h1>BareAesthetic</h1>
+      <p>Эстетичный мод для Minecraft 1.16.5</p>
+      <p>Красивые визуалы без изменения базовых текстур</p>
+    </section>
 
-  <section id="about" class="section">
-    <h1>О моде</h1>
-    <p>BareAesthetic — это эстетичный мод для Minecraft 1.16.5, который улучшает визуалы игры без изменения травы, камня или других базовых элементов. Автор вложил душу в мягкие тени, естественное освещение и лёгкие анимации, чтобы мир выглядел живее и уютнее. Это не меняет геймплей, просто делает всё красивее — как будто добавил фильтр премиум-качества.</p>
-    <p>Совместим с Forge, оптимизирован для слабых ПК. Скачай и почувствуй разницу!</p>
-  </section>
+    <section id="about" class="section">
+      <h1>О моде</h1>
+      <p>BareAesthetic улучшает визуальную часть Minecraft 1.16.5, не меняя траву, камень, дерево и другие базовые блоки. Просто добавляет мягкие тени, лучшее освещение, лёгкие блики и приятную цветокоррекцию — мир становится уютнее и красивее, но остаётся узнаваемым ванильным.</p>
+      <p>Это мод для тех, кто хочет эстетики без перегрузки шейдерами и текстурпаками. Работает на Forge, очень лёгкий.</p>
+    </section>
 
-  <section id="custom" class="section">
-    <h1>Кастомизация абсолютно</h1>
-    <h1>каждой детали</h1>
-    <div class="modules-grid">
-      <div class="module-card glass-drop" onclick="toggleModule(this)">
-        <h3>Визуалы</h3>
-        <p>Мягкие тени и освещение</p>
+    <section id="custom" class="section">
+      <h1>Кастомизация</h1>
+      <p>Настраивай визуалы под себя: тени, освещение, цветовые фильтры, анимации блоков и частиц.</p>
+      <div class="modules">
+        <div class="module glass">Мягкие тени</div>
+        <div class="module glass">Тёплое освещение</div>
+        <div class="module glass">Лёгкие блики</div>
+        <div class="module glass">Цветокоррекция</div>
       </div>
-      <div class="module-card glass-drop" onclick="toggleModule(this)">
-        <h3>Оптимизация</h3>
-        <p>Улучшение FPS + визуалы</p>
-      </div>
-      <div class="module-card glass-drop" onclick="toggleModule(this)">
-        <h3>Анимации</h3>
-        <p>Плавные переходы блоков</p>
-      </div>
-      <!-- Добавь больше по вкусу -->
-    </div>
-  </section>
+    </section>
 
-  <section id="faq" class="section">
-    <h1>Часто задаваемые вопросы</h1>
-    <div class="faq-item">
-      <h3>Какие ОС поддерживаются?</h3>
-      <p>Windows, macOS, Linux.</p>
-    </div>
-    <div class="faq-item">
-      <h3>Как часто выходят обновления?</h3>
-      <p>Еженедельно.</p>
-    </div>
-  </section>
+    <section id="faq" class="section">
+      <h1>FAQ</h1>
+      <div class="faq-item glass">
+        <h3>Совместим ли с другими модами?</h3>
+        <p>Да, работает с большинством модов на Forge 1.16.5.</p>
+      </div>
+      <div class="faq-item glass">
+        <h3>Требует ли OptiFine?</h3>
+        <p>Нет, но с OptiFine выглядит ещё лучше.</p>
+      </div>
+    </section>
 
-  <section id="profile" class="section">
-    <h1>Профиль</h1>
-    <form class="profile-form glass-drop">
-      <input type="email" placeholder="Email">
-      <input type="password" placeholder="Пароль">
-      <button>Войти</button>
-    </form>
-  </section>
+    <section id="profile" class="section">
+      <h1>Профиль</h1>
+      <form class="profile-form glass">
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Пароль" required>
+        <button type="submit">Войти</button>
+        <button type="button">Зарегистрироваться</button>
+      </form>
+    </section>
+  </main>
 
   <script src="script.js"></script>
 </body>
