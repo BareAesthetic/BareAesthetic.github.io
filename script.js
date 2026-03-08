@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const themes = ['theme-light', 'theme-dark', 'theme-aero'];
-  let currentThemeIndex = 1; // тёмная по умолчанию
+  let currentTheme = 1;
 
   // Вкладки
   document.querySelectorAll('.tab').forEach(tab => {
@@ -8,28 +8,26 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
       document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-
       tab.classList.add('active');
       document.querySelector(tab.getAttribute('href')).classList.add('active');
     });
   });
 
-  // Переключение тем (цикл из 3)
+  // Переключение тем
   const toggle = document.getElementById('theme-switch');
   toggle.addEventListener('change', () => {
     document.body.classList.remove(...themes);
-    currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-    document.body.classList.add(themes[currentThemeIndex]);
+    currentTheme = (currentTheme + 1) % 3;
+    document.body.classList.add(themes[currentTheme]);
 
-    // Иконки
     const label = toggle.nextElementSibling;
-    label.querySelector('.sun').style.opacity = currentThemeIndex === 0 ? 1 : 0;
-    label.querySelector('.moon').style.opacity = currentThemeIndex === 1 ? 1 : 0;
-    label.querySelector('.aero').style.opacity = currentThemeIndex === 2 ? 1 : 0;
+    label.querySelector('.sun').style.opacity = currentTheme === 0 ? 1 : 0;
+    label.querySelector('.moon').style.opacity = currentTheme === 1 ? 1 : 0;
+    label.querySelector('.aero').style.opacity = currentTheme === 2 ? 1 : 0;
   });
 
-  // Звёзды и кометы на canvas
-  const canvas = document.getElementById('stars-canvas');
+  // Космос — звёзды + кометы
+  const canvas = document.getElementById('cosmic-canvas');
   const ctx = canvas.getContext('2d');
   let w, h;
 
@@ -41,42 +39,39 @@ document.addEventListener('DOMContentLoaded', () => {
   resize();
 
   const stars = [];
-  const comets = [];
-
-  // Звёзды
-  for (let i = 0; i < 200; i++) {
+  for (let i = 0; i < 300; i++) {
     stars.push({
       x: Math.random() * w,
       y: Math.random() * h,
-      size: Math.random() * 1.5 + 0.5,
-      alpha: Math.random() * 0.7 + 0.3,
-      twinkle: Math.random() * 0.02 + 0.01
+      r: Math.random() * 1.2 + 0.3,
+      alpha: Math.random() * 0.6 + 0.4,
+      speed: Math.random() * 0.0008 + 0.0003
     });
   }
 
-  // Кометы
-  function createComet() {
+  const comets = [];
+  function spawnComet() {
     comets.push({
       x: Math.random() * w,
-      y: -50,
-      speed: Math.random() * 8 + 6,
-      length: Math.random() * 80 + 60,
+      y: -100,
+      len: Math.random() * 120 + 80,
+      speed: Math.random() * 12 + 8,
       alpha: 1
     });
   }
 
-  setInterval(createComet, 4000); // комета каждые 4 секунды
+  setInterval(spawnComet, 3000);
 
-  function animate() {
-    ctx.fillStyle = 'rgba(0,0,0,0.05)';
+  function draw() {
+    ctx.fillStyle = 'rgba(0,0,20,0.06)';
     ctx.fillRect(0, 0, w, h);
 
     // Звёзды
     stars.forEach(s => {
-      s.alpha += Math.sin(Date.now() * s.twinkle) * 0.01;
+      s.alpha = 0.4 + Math.sin(Date.now() * s.speed) * 0.6;
       ctx.fillStyle = `rgba(255,255,255,${s.alpha})`;
       ctx.beginPath();
-      ctx.arc(s.x, s.y, s.size, 0, Math.PI * 2);
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
       ctx.fill();
     });
 
@@ -85,25 +80,25 @@ document.addEventListener('DOMContentLoaded', () => {
       c.y += c.speed;
       c.alpha -= 0.008;
 
-      if (c.alpha <= 0) {
+      if (c.alpha <= 0 || c.y > h + 100) {
         comets.splice(i, 1);
         return;
       }
 
-      const gradient = ctx.createLinearGradient(c.x, c.y, c.x - 20, c.y + c.length);
-      gradient.addColorStop(0, `rgba(255,240,200,${c.alpha})`);
-      gradient.addColorStop(1, 'transparent');
+      const g = ctx.createLinearGradient(c.x, c.y, c.x - 30, c.y + c.len);
+      g.addColorStop(0, `rgba(220,240,255,${c.alpha})`);
+      g.addColorStop(1, 'transparent');
 
-      ctx.strokeStyle = gradient;
-      ctx.lineWidth = 3;
+      ctx.strokeStyle = g;
+      ctx.lineWidth = 4;
       ctx.beginPath();
       ctx.moveTo(c.x, c.y);
-      ctx.lineTo(c.x - 20, c.y + c.length);
+      ctx.lineTo(c.x - 30, c.y + c.len);
       ctx.stroke();
     });
 
-    requestAnimationFrame(animate);
+    requestAnimationFrame(draw);
   }
 
-  animate();
+  draw();
 });
