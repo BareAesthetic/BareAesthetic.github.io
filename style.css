@@ -1,16 +1,18 @@
 *{
+
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:system-ui;
+
+font-family:'Quicksand',sans-serif;
+
 }
 
 body{
 
-background-image:url("images/image.png");
+background-image:url("images/sakura.png");
 
 background-size:cover;
-
 background-position:center;
 
 background-attachment:fixed;
@@ -20,6 +22,9 @@ color:white;
 min-height:100vh;
 
 }
+
+
+/* затемнение */
 
 body::before{
 
@@ -38,17 +43,24 @@ background:rgba(0,0,0,0.45);
 z-index:-1;
 
 }
-/* стеклянный header */
+
+
+/* header */
 
 header{
 
-backdrop-filter:blur(15px);
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:20px 40px;
 
 background:rgba(0,0,0,0.4);
 
-border-bottom:1px solid rgba(255,255,255,0.2);
+backdrop-filter:blur(15px);
 
 }
+
 
 /* меню */
 
@@ -58,13 +70,13 @@ margin:0 15px;
 
 cursor:pointer;
 
-opacity:.8;
+transition:.3s;
 
 }
 
 nav a:hover{
 
-opacity:1;
+opacity:.7;
 
 }
 
@@ -75,7 +87,7 @@ opacity:1;
 
 display:none;
 
-padding:80px 40px;
+padding:100px 40px;
 
 }
 
@@ -98,7 +110,7 @@ margin-bottom:20px;
 
 .subtitle{
 
-opacity:.7;
+opacity:.8;
 
 }
 
@@ -119,7 +131,7 @@ flex-wrap:wrap;
 
 .card{
 
-background:rgba(255,255,255,.08);
+background:rgba(255,255,255,.1);
 
 padding:30px;
 
@@ -127,15 +139,34 @@ border-radius:20px;
 
 backdrop-filter:blur(20px);
 
-transition:.3s;
+transition:.4s;
 
 }
 
 .card:hover{
 
-transform:translateY(-5px);
+transform:translateY(-10px);
 
-background:rgba(255,255,255,.12);
+background:rgba(255,255,255,.2);
+
+}
+
+
+/* центр */
+
+.center{
+
+text-align:center;
+
+background:rgba(0,0,0,.5);
+
+padding:40px;
+
+border-radius:20px;
+
+max-width:400px;
+
+margin:auto;
 
 }
 
@@ -156,103 +187,15 @@ max-width:300px;
 
 margin:auto;
 
-backdrop-filter:blur(20px);
-
 }
 
-
-/* аватар */
-
-.avatarUpload{
-
-cursor:pointer;
-
-display:inline-block;
-
-}
-
-.avatarUpload img{
+.profile img{
 
 width:120px;
 
-height:120px;
-
 border-radius:50%;
 
-object-fit:cover;
-
-}
-
-.avatarUpload input{
-
-display:none;
-
-}
-
-
-/* настройки */
-
-.settings{
-
-max-width:300px;
-
-margin:auto;
-
-display:flex;
-
-flex-direction:column;
-
-gap:15px;
-
-background:rgba(0,0,0,.5);
-
-padding:30px;
-
-border-radius:20px;
-
-backdrop-filter:blur(20px);
-
-}
-
-
-/* центр карточка */
-
-.centerCard{
-
-text-align:center;
-
-background:rgba(0,0,0,.5);
-
-padding:40px;
-
-border-radius:20px;
-
-max-width:400px;
-
-margin:auto;
-
-}
-
-
-/* курсор */
-
-.cursor{
-
-width:12px;
-
-height:12px;
-
-background:white;
-
-border-radius:50%;
-
-position:fixed;
-
-pointer-events:none;
-
-transform:translate(-50%,-50%);
-
-mix-blend-mode:difference;
+margin-bottom:20px;
 
 }
 
@@ -267,14 +210,12 @@ color:black;
 
 .light header{
 
-background:rgba(255,255,255,0.6);
-
-backdrop-filter:blur(20px);
+background:rgba(255,255,255,.7);
 
 }
 
 .light .card{
 
-background:rgba(255,255,255,0.6);
+background:rgba(255,255,255,.7);
 
 }
