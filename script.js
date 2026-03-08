@@ -1,27 +1,30 @@
-const btns = document.querySelectorAll(".nav-btn")
-const slider = document.querySelector(".nav-slider")
 
-btns.forEach(btn=>{
+// курсор
 
-btn.onclick=()=>{
+const cursor = document.querySelector(".cursor")
 
-document.querySelector(".nav-btn.active").classList.remove("active")
-btn.classList.add("active")
+document.addEventListener("mousemove",(e)=>{
 
-slider.style.width = btn.offsetWidth+"px"
-slider.style.left = btn.offsetLeft+"px"
+cursor.style.left = e.clientX+"px"
+cursor.style.top = e.clientY+"px"
 
-const tab = btn.dataset.tab
-
-document.querySelectorAll(".tab").forEach(t=>{
-t.classList.remove("active")
 })
 
-document.getElementById(tab)?.classList.add("active")
+
+// переключение страниц
+
+function openPage(id){
+
+document.querySelectorAll(".page").forEach(p=>{
+p.classList.remove("active")
+})
+
+document.getElementById(id).classList.add("active")
 
 }
 
-})
+
+// тема
 
 function toggleTheme(){
 
@@ -29,12 +32,73 @@ document.body.classList.toggle("light")
 
 }
 
-/* color settings */
 
-document.getElementById("textColor").oninput=e=>{
-document.body.style.color=e.target.value
+// меняющийся текст
+
+const texts=[
+"Красивый HUD",
+"Лучшие визуалы",
+"Плавные анимации",
+"Лучший клиент"
+]
+
+let i=0
+
+setInterval(()=>{
+
+i=(i+1)%texts.length
+
+document.getElementById("changingText").textContent=texts[i]
+
+},2000)
+
+
+// смена аватарки
+
+document.getElementById("upload").addEventListener("change",function(){
+
+const file=this.files[0]
+
+if(file){
+
+const reader=new FileReader()
+
+reader.onload=function(e){
+
+document.getElementById("avatar").src=e.target.result
+
 }
 
-document.getElementById("bgColor").oninput=e=>{
-document.body.style.background=e.target.value
+reader.readAsDataURL(file)
+
 }
+
+})
+
+
+// Google login
+
+function handleCredentialResponse(response){
+
+document.getElementById("username").textContent="Пользователь Google"
+
+}
+
+
+// анимация скролла
+
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("show")
+
+}
+
+})
+
+})
+
+document.querySelectorAll(".fade").forEach(el=>observer.observe(el))
