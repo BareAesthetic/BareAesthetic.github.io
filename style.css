@@ -1,10 +1,21 @@
-/* Кастомный курсор — Liquid Glass капля */
-/* Кастомный курсор — прозрачная Liquid Glass капля */
-body, a, button, input, label, .tab {
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><defs><radialGradient id="g"><stop offset="0%" stop-color="%23ffffff"/><stop offset="60%" stop-color="%2300bfff"/><stop offset="100%" stop-color="%230080ff"/></radialGradient><filter id="blur"><feGaussianBlur stdDeviation="2"/></filter></defs><ellipse cx="16" cy="20" rx="10" ry="14" fill="url(%23g)" opacity="0.65" filter="url(%23blur)"/><ellipse cx="16" cy="16" rx="8" ry="12" fill="%23ffffff" opacity="0.35"/><circle cx="16" cy="12" r="4" fill="%23ffffff" opacity="0.8"/></svg>') 16 16, auto;
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><defs><radialGradient id="g"><stop offset="0%" stop-color="%23ffffff"/><stop offset="60%" stop-color="%2300bfff"/><stop offset="100%" stop-color="%230080ff"/></radialGradient><filter id="blur"><feGaussianBlur stdDeviation="2"/></filter></defs><ellipse cx="16" cy="20" rx="10" ry="14" fill="url(%23g)" opacity="0.65" filter="url(%23blur)"/><ellipse cx="16" cy="16" rx="8" ry="12" fill="%23ffffff" opacity="0.35"/><circle cx="16" cy="12" r="4" fill="%23ffffff"/></svg>') 16 16, auto;
 }
 
-/* Навбар — полностью стабильный, не съезжает */
+body.theme-light { background: linear-gradient(135deg, #c5e4ff, #e0f7ff, #f0fbff); color: #0f172a; }
+body.theme-dark { background: linear-gradient(135deg, #0b132b, #1c2526, #0f172a); color: #d1d5db; }
+body.theme-aero { background: linear-gradient(135deg, #89cff0, #b3e5fc, #d1f2ff); color: #1e293b; }
+
+/* Фейерверки */
+#fireworks-canvas { position: fixed; inset: 0; z-index: -2; pointer-events: none; }
+
+/* Навбар — стабильный, не съезжает */
 .liquid-nav {
   position: fixed;
   top: 20px;
@@ -18,14 +29,13 @@ body, a, button, input, label, .tab {
   justify-content: space-between;
   z-index: 1000;
   border-radius: 44px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.10), rgba(140,220,255,0.06));
-  border: 1px solid rgba(180,240,255,0.18);
-  box-shadow: 0 20px 80px rgba(0,0,0,0.45), inset 0 10px 50px rgba(255,255,255,0.12);
+  background: linear-gradient(135deg, rgba(255,255,255,0.12), rgba(140,220,255,0.08));
+  border: 1px solid rgba(180,240,255,0.22);
+  box-shadow: 0 20px 80px rgba(0,0,0,0.4), inset 0 10px 50px rgba(255,255,255,0.15);
   backdrop-filter: blur(14px) saturate(260%);
-  transition: none; /* отключаем любые анимации на hover */
+  transition: none;
 }
 
-/* Логотип — всегда на месте */
 .logo {
   flex-shrink: 0;
   display: flex;
@@ -38,10 +48,8 @@ body, a, button, input, label, .tab {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   user-select: none;
-  pointer-events: none;
 }
 
-/* Список вкладок — без сдвига */
 .nav-links {
   display: flex;
   align-items: center;
@@ -50,7 +58,6 @@ body, a, button, input, label, .tab {
   list-style: none;
 }
 
-/* Вкладка — фиксированная ширина, hover не двигает ничего */
 .tab {
   flex: 0 0 auto;
   min-width: 110px;
@@ -64,16 +71,98 @@ body, a, button, input, label, .tab {
   transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Hover — только визуал, размер остаётся прежним */
-.tab:hover {
-  background: rgba(255,255,255,0.15);
-  box-shadow: 0 0 25px rgba(125,211,252,0.35);
+.tab:hover { background: rgba(255,255,255,0.15); box-shadow: 0 0 25px rgba(125,211,252,0.35); }
+.tab.active { background: linear-gradient(90deg, rgba(125,211,252,0.45), rgba(192,132,252,0.38)); box-shadow: 0 0 45px rgba(125,211,252,0.7); }
+
+/* Темы */
+.theme-toggle { width: 100px; height: 44px; position: relative; flex-shrink: 0; }
+
+#theme-switch { display: none; }
+
+.toggle-label {
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.18);
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  cursor: pointer;
 }
 
-/* Активная вкладка */
-.tab.active {
-  background: linear-gradient(90deg, rgba(125,211,252,0.45), rgba(192,132,252,0.38));
-  box-shadow: 0 0 45px rgba(125,211,252,0.7);
+.icon {
+  font-size: 26px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
-/* Остальные стили (темы, секции, визуалы, профиль и т.д.) остаются как в предыдущей версии */
+.sun { left: 16px; }
+.moon { left: 50%; transform: translate(-50%, -50%); opacity: 0; }
+.aero { right: 16px; opacity: 0; }
+
+/* Остальные стили остаются как раньше */
+main { padding: 160px 20px 120px; max-width: 1280px; margin: 0 auto; }
+
+.section { display: none; opacity: 0; transform: translateY(50px); transition: all 1s cubic-bezier(0.22, 1, 0.36, 1); }
+.section.active { display: block; opacity: 1; transform: translateY(0); }
+
+h1 { font-size: 5.5rem; font-weight: 700; letter-spacing: -1.2px; text-align: center; margin-bottom: 16px; background: linear-gradient(90deg, #a5b4fc, #c084fc, #f472b6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+h2 { font-size: 3.4rem; opacity: 0.9; text-align: center; margin-bottom: 48px; }
+
+p { font-size: 1.65rem; line-height: 1.8; text-align: center; max-width: 920px; margin: 0 auto 60px; opacity: 0.92; }
+
+.visuals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 32px;
+  margin-top: 60px;
+}
+
+.liquid-card {
+  padding: 40px 32px;
+  text-align: center;
+  border-radius: 40px;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.liquid-card h3 {
+  font-size: 1.9rem;
+  margin-bottom: 16px;
+  background: linear-gradient(90deg, #a5b4fc, #c084fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.sad-text { font-size: 3.2rem; font-weight: 700; color: #fda4af; margin: 60px 0 20px; text-align: center; }
+
+.faq-item { max-width: 900px; margin: 32px auto; padding: 32px; text-align: left; border-radius: 36px; }
+
+.profile-form { max-width: 520px; margin: 80px auto; padding: 60px 48px; border-radius: 48px; }
+
+input, button {
+  width: 100%;
+  padding: 20px;
+  margin: 20px 0;
+  border: none;
+  border-radius: 28px;
+  font-size: 1.2rem;
+}
+
+input { background: rgba(255,255,255,0.16); color: inherit; backdrop-filter: blur(8px); }
+
+button {
+  background: linear-gradient(90deg, #f472b6, #c084fc, #a5b4fc);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.4s;
+}
+
+button:hover { transform: scale(1.04); box-shadow: 0 0 40px rgba(196,132,252,0.6); }
