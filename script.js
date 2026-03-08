@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Переключение вкладок
   document.querySelectorAll('.tab').forEach(tab => {
     tab.addEventListener('click', e => {
       e.preventDefault();
@@ -11,8 +10,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Демо регистрации
-  document.querySelector('.reg-btn').addEventListener('click', () => {
-    alert('Регистрация откроется скоро!');
+  const toggle = document.getElementById('theme-switch');
+  toggle.addEventListener('change', () => {
+    document.body.classList.toggle('theme-light');
+    document.body.classList.toggle('theme-dark');
   });
 });
