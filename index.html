@@ -4,18 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BareAesthetic</title>
-  <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body class="theme-dark">
-  <canvas id="stars-canvas"></canvas>
-  <div class="liquid-bg"></div>
+  <canvas id="cosmic-canvas"></canvas>
 
   <nav class="liquid-nav">
     <div class="logo">
-      <div class="logo-drop">💧</div>
+      <div class="logo-drop">✧</div>
       BareAesthetic
     </div>
 
@@ -31,9 +30,9 @@
     <div class="theme-toggle">
       <input type="checkbox" id="theme-switch" checked>
       <label for="theme-switch" class="toggle-label">
-        <span class="sun">☀️</span>
-        <span class="moon">🌙</span>
-        <span class="aero">✨</span>
+        <span class="icon sun">☀</span>
+        <span class="icon moon">☾</span>
+        <span class="icon aero">✧</span>
       </label>
     </div>
   </nav>
@@ -42,38 +41,34 @@
     <section id="home" class="section active">
       <h1>BareAesthetic</h1>
       <h2>изменит твой Minecraft</h2>
-      <p>Красивые визуалы без изменения базовых текстур — мир становится уютнее, атмосфернее и живее.</p>
+      <p>Мягкие визуалы, которые не трогают оригинальные текстуры, а лишь добавляют атмосферу, глубину и магию.</p>
     </section>
 
     <section id="about" class="section">
       <h1>О моде</h1>
-      <p>BareAesthetic — визуальный мод для Minecraft 1.16.5, который делает игру невероятно атмосферной. Он не меняет текстуры блоков, а добавляет мягкие тени, объёмные лучи света, лёгкие блики и приятную цветовую гармонию. Всё выглядит так, будто ты действительно находишься в живом мире — тёплые вечера, туманные утра, мерцающие воды и глубокие леса.</p>
-      <p>Лёгкий, работает на Forge, идеально для тех, кто хочет красоты без потери производительности.</p>
+      <p>BareAesthetic превращает обычный Minecraft 1.16.5 в невероятно атмосферный мир. Он не заменяет текстуры блоков, а работает на уровне освещения, теней, бликов и цветовой гармонии. В результате получаешь ощущение живого, дышащего пространства: тёплые закаты, лёгкий туман в лесах, мерцающая вода и глубокие, уютные пещеры.</p>
+      <p>Лёгкий, совместим с Forge, почти не нагружает систему — красота без компромиссов.</p>
     </section>
 
     <section id="visuals" class="section">
       <h1>Визуалы</h1>
-      <p>Мод превращает обычный Minecraft в атмосферный мир:</p>
+      <p>Вот что делает игру по-настоящему атмосферной:</p>
       <div class="visuals-grid">
-        <div class="visual-card liquid-drop">
-          <h3>Визуал 1</h3>
-          <p>Мягкие тени и объём</p>
-          <p>Блоки и ландшафт получают естественную глубину</p>
+        <div class="visual-card liquid-card">
+          <h3>Мягкие тени и объём</h3>
+          <p>Блоки и ландшафт получают естественную глубину и мягкие переходы света</p>
         </div>
-        <div class="visual-card liquid-drop">
-          <h3>Визуал 2</h3>
-          <p>Объёмные лучи света</p>
-          <p>Свет от солнца и факелов выглядит живым</p>
+        <div class="visual-card liquid-card">
+          <h3>Объёмные лучи света</h3>
+          <p>Солнце, факелы и луна создают живые, проникающие лучи</p>
         </div>
-        <div class="visual-card liquid-drop">
-          <h3>Визуал 3</h3>
-          <p>Атмосферный туман и частицы</p>
-          <p>Лёгкий туман и пыль в воздухе добавляют магии</p>
+        <div class="visual-card liquid-card">
+          <h3>Атмосферный туман и частицы</h3>
+          <p>Лёгкий туман, пыль и искры в воздухе добавляют магии и глубины</p>
         </div>
-        <div class="visual-card liquid-drop">
-          <h3>Визуал 4</h3>
-          <p>Тёплая цветокоррекция</p>
-          <p>Цвета становятся насыщенными, но естественными</p>
+        <div class="visual-card liquid-card">
+          <h3>Тёплая цветокоррекция</h3>
+          <p>Цвета становятся насыщенными, но остаются естественными и уютными</p>
         </div>
       </div>
     </section>
@@ -81,28 +76,28 @@
     <section id="purchase" class="section">
       <h1>Покупка</h1>
       <p class="sad-text">Покупки пока что недоступны :(</p>
-      <p>Следи за обновлениями — скоро всё появится.</p>
+      <p>Но скоро всё изменится — следи за новостями.</p>
     </section>
 
     <section id="support" class="section">
       <h1>Поддержка</h1>
-      <div class="faq-item liquid-drop">
+      <div class="faq-item liquid-card">
         <h3>Как установить мод?</h3>
-        <p>Установи Forge 1.16.5 → положи .jar в папку mods.</p>
+        <p>Установи Forge для 1.16.5 → положи .jar в папку mods.</p>
       </div>
-      <div class="faq-item liquid-drop">
-        <h3>Работает ли с другими модами?</h3>
-        <p>Да, совместим с большинством модов на Forge.</p>
+      <div class="faq-item liquid-card">
+        <h3>Совместим ли с другими модами?</h3>
+        <p>Да, работает с большинством популярных модов на Forge.</p>
       </div>
-      <div class="faq-item liquid-drop">
+      <div class="faq-item liquid-card">
         <h3>Нужен ли OptiFine?</h3>
-        <p>Нет, но с ним картинка становится ещё красивее.</p>
+        <p>Не обязателен, но с ним визуалы выглядят ещё эффектнее.</p>
       </div>
     </section>
 
     <section id="profile" class="section">
       <h1>Профиль</h1>
-      <form class="profile-form liquid-drop">
+      <form class="profile-form liquid-card">
         <input type="email" placeholder="Email" required>
         <input type="password" placeholder="Пароль" required>
         <button type="submit">Войти</button>
