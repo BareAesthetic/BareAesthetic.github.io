@@ -6,68 +6,66 @@
   <title>BareAesthetic</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="theme-dark">
-  <nav class="glass-nav">
-    <div class="logo">BareAesthetic</div>
+<body>
+  <!-- Фон с частицами-каплями -->
+  <div class="liquid-bg"></div>
+
+  <nav class="liquid-nav">
+    <div class="logo">
+      <span class="drop-icon">💧</span>BareAesthetic
+    </div>
     <ul>
       <li><a href="#home" class="tab active">Главная</a></li>
       <li><a href="#about" class="tab">О моде</a></li>
-      <li><a href="#custom" class="tab">Кастомизация</a></li>
-      <li><a href="#faq" class="tab">FAQ</a></li>
+      <li><a href="#visuals" class="tab">Визуалы</a></li>
       <li><a href="#profile" class="tab">Профиль</a></li>
     </ul>
-    <div class="theme-toggle">
-      <input type="checkbox" id="theme-switch">
-      <label for="theme-switch" class="toggle-label">
-        <span class="sun">☀️</span>
-        <span class="moon">🌙</span>
-      </label>
-    </div>
+    <button class="reg-btn">Зарегистрироваться</button>
   </nav>
 
   <main>
     <section id="home" class="section active">
-      <h1>BareAesthetic</h1>
-      <p>Эстетичный мод для Minecraft 1.16.5</p>
-      <p>Красивые визуалы без изменения базовых текстур</p>
+      <h1>Командный игровой мод</h1>
+      <h2>с BareAesthetic</h2>
+      <p>Красивые визуалы без изменения базовых текстур — просто делает Minecraft уютнее и эстетичнее.</p>
     </section>
 
     <section id="about" class="section">
       <h1>О моде</h1>
-      <p>BareAesthetic улучшает визуальную часть Minecraft 1.16.5, не меняя траву, камень, дерево и другие базовые блоки. Просто добавляет мягкие тени, лучшее освещение, лёгкие блики и приятную цветокоррекцию — мир становится уютнее и красивее, но остаётся узнаваемым ванильным.</p>
-      <p>Это мод для тех, кто хочет эстетики без перегрузки шейдерами и текстурпаками. Работает на Forge, очень лёгкий.</p>
+      <p>BareAesthetic — это лёгкий эстетический мод для Minecraft 1.16.5. Он не перекрашивает траву, камень или дерево, а добавляет мягкие тени, объёмное освещение, лёгкие блики и приятную цветовую гармонию. Мир становится живым и атмосферным, но остаётся полностью ванильным по духу.</p>
+      <p>Идеально для тех, кто хочет красоты без шейдеров и тяжёлых текстурпаков.</p>
     </section>
 
-    <section id="custom" class="section">
-      <h1>Кастомизация</h1>
-      <p>Настраивай визуалы под себя: тени, освещение, цветовые фильтры, анимации блоков и частиц.</p>
-      <div class="modules">
-        <div class="module glass">Мягкие тени</div>
-        <div class="module glass">Тёплое освещение</div>
-        <div class="module glass">Лёгкие блики</div>
-        <div class="module glass">Цветокоррекция</div>
-      </div>
-    </section>
-
-    <section id="faq" class="section">
-      <h1>FAQ</h1>
-      <div class="faq-item glass">
-        <h3>Совместим ли с другими модами?</h3>
-        <p>Да, работает с большинством модов на Forge 1.16.5.</p>
-      </div>
-      <div class="faq-item glass">
-        <h3>Требует ли OptiFine?</h3>
-        <p>Нет, но с OptiFine выглядит ещё лучше.</p>
+    <section id="visuals" class="section">
+      <h1>Визуалы</h1>
+      <p>Вот что делает мод особенным — всё работает через шейдер-подобные улучшения без изменения оригинальных текстур:</p>
+      <div class="visuals-grid">
+        <div class="visual-card liquid-drop">
+          <h3>Мягкие тени</h3>
+          <p>Блоки получают естественные градиенты света и тени</p>
+        </div>
+        <div class="visual-card liquid-drop">
+          <h3>Объёмное освещение</h3>
+          <p>Свет от факелов и солнца выглядит объёмным</p>
+        </div>
+        <div class="visual-card liquid-drop">
+          <h3>Лёгкие блики</h3>
+          <p>Вода, стекло и металлы получают красивые отражения</p>
+        </div>
+        <div class="visual-card liquid-drop">
+          <h3>Тёплая цветокоррекция</h3>
+          <p>Цвета становятся насыщеннее, но не кричащими</p>
+        </div>
       </div>
     </section>
 
     <section id="profile" class="section">
       <h1>Профиль</h1>
-      <form class="profile-form glass">
+      <form class="profile-form liquid-drop">
         <input type="email" placeholder="Email" required>
         <input type="password" placeholder="Пароль" required>
         <button type="submit">Войти</button>
-        <button type="button">Зарегистрироваться</button>
+        <button type="button">Создать аккаунт</button>
       </form>
     </section>
   </main>
