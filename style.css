@@ -7,7 +7,7 @@ font-family:system-ui;
 
 body{
 
-background-image:url("https://images.alphacoders.com/115/1151249.jpg");
+background-image:url("https://images6.alphacoders.com/133/1338705.png");
 
 background-size:cover;
 
@@ -20,6 +20,7 @@ color:white;
 min-height:100vh;
 
 }
+
 body::before{
 
 content:"";
@@ -32,12 +33,11 @@ left:0;
 width:100%;
 height:100%;
 
-background:rgba(0,0,0,0.55);
+background:rgba(0,0,0,0.45);
 
 z-index:-1;
 
 }
-
 /* стеклянный header */
 
 header{
@@ -268,20 +268,20 @@ mix-blend-mode:difference;
 
 .light{
 
-background:white;
-
 color:black;
 
 }
 
 .light header{
 
-background:rgba(255,255,255,.6);
+background:rgba(255,255,255,0.6);
+
+backdrop-filter:blur(20px);
 
 }
 
 .light .card{
 
-background:rgba(0,0,0,.05);
+background:rgba(255,255,255,0.6);
 
 }
