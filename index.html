@@ -1,117 +1,102 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BareAesthetic</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BareAesthetic</title>
+<link rel="stylesheet" href="style.css">
 </head>
-<body class="theme-dark">
-  <canvas id="fireworks-canvas"></canvas>
 
-  <nav class="liquid-nav">
-    <div class="logo">
-      <span class="logo-drop">♦</span>
-      BareAesthetic
-    </div>
+<body>
 
-    <ul class="nav-links">
-      <li><a href="#home" class="tab active">Главная</a></li>
-      <li><a href="#about" class="tab">О моде</a></li>
-      <li><a href="#visuals" class="tab">Визуалы</a></li>
-      <li><a href="#purchase" class="tab">Покупка</a></li>
-      <li><a href="#support" class="tab">Поддержка</a></li>
-      <li><a href="#profile" class="tab">Профиль</a></li>
-    </ul>
+<header class="navbar">
+<div class="logo">BareAesthetic</div>
 
-    <div class="theme-toggle">
-      <input type="checkbox" id="theme-switch" checked>
-      <label for="theme-switch" class="toggle-label">
-        <span class="icon sun">☀</span>
-        <span class="icon moon">☾</span>
-        <span class="icon aero">✧</span>
-      </label>
-    </div>
-  </nav>
+<nav>
+<button onclick="openTab('home')">Главная</button>
+<button onclick="openTab('profile')">Профиль</button>
+<button onclick="openTab('shop')">Покупки</button>
+<button onclick="openTab('guides')">Гайды</button>
+<button onclick="openTab('news')">Новости</button>
+<button onclick="openTab('support')">Поддержка</button>
+</nav>
 
-  <main>
-    <section id="home" class="section active">
-      <h1>BareAesthetic</h1>
-      <h2>изменит твой Minecraft</h2>
-      <p>Мягкие визуалы без изменения базовых текстур — мир становится уютнее, атмосфернее и живее.</p>
-    </section>
+<button class="loginBtn" onclick="loginGoogle()">Вход через Gmail</button>
 
-    <section id="about" class="section">
-      <h1>О моде</h1>
-      <p>BareAesthetic превращает Minecraft 1.16.5 в невероятно атмосферный мир. Мод не меняет текстуры блоков, а добавляет мягкие тени, объёмные лучи света, лёгкие блики и приятную цветовую гармонию. Всё выглядит так, будто ты действительно в живом мире — тёплые вечера, туманные утра, мерцающие воды и глубокие леса.</p>
-      <p>Лёгкий, работает на Forge, идеально для тех, кто хочет красоты без потери производительности.</p>
-    </section>
+</header>
 
-    <section id="visuals" class="section">
-      <h1>Визуалы</h1>
-      <p>Мод делает игру по-настоящему атмосферной:</p>
-      <div class="visuals-grid">
-        <div class="visual-card liquid-card">
-          <h3>Мягкие тени и объём</h3>
-          <p>Блоки и ландшафт получают естественную глубину</p>
-        </div>
-        <div class="visual-card liquid-card">
-          <h3>Объёмные лучи света</h3>
-          <p>Свет от солнца и факелов выглядит живым</p>
-        </div>
-        <div class="visual-card liquid-card">
-          <h3>Атмосферный туман и частицы</h3>
-          <p>Лёгкий туман и пыль в воздухе добавляют магии</p>
-        </div>
-        <div class="visual-card liquid-card">
-          <h3>Тёплая цветокоррекция</h3>
-          <p>Цвета становятся насыщенными, но естественными</p>
-        </div>
-      </div>
-    </section>
+<main>
 
-    <section id="purchase" class="section">
-      <h1>Покупка</h1>
-      <p class="sad-text">Покупки пока что недоступны :(</p>
-      <p>Следи за обновлениями — скоро всё появится.</p>
-    </section>
+<section id="home" class="tab active">
+<h1>Мод BareAesthetic</h1>
 
-    <section id="support" class="section">
-      <h1>Поддержка</h1>
-      <div class="faq-item liquid-card">
-        <h3>Как установить мод?</h3>
-        <p>Установи Forge 1.16.5 → положи .jar в папку mods.</p>
-      </div>
-      <div class="faq-item liquid-card">
-        <h3>Совместим ли с другими модами?</h3>
-        <p>Да, работает с большинством популярных модов на Forge.</p>
-      </div>
-      <div class="faq-item liquid-card">
-        <h3>Нужен ли OptiFine?</h3>
-        <p>Не обязателен, но с ним визуалы выглядят ещё эффектнее.</p>
-      </div>
-    </section>
+<p>
+BareAesthetic — это эстетичный визуальный мод для Minecraft 1.16.5.
+Он делает игру красивее и современнее без изменения геймплея.
+</p>
 
-    <section id="profile" class="section">
-      <h1>Профиль</h1>
-      <form id="auth-form" class="profile-form liquid-card">
-        <input type="text" id="nickname" placeholder="Никнейм" required>
-        <input type="email" id="email" placeholder="Email" required>
-        <input type="password" id="password" placeholder="Пароль" required>
-        <div class="avatar-upload">
-          <label for="avatar-input">Сменить фото (JPG/PNG)</label>
-          <input type="file" id="avatar-input" accept="image/jpeg,image/png">
-          <img id="avatar-preview" src="" alt="Аватар">
-        </div>
-        <button type="submit">Войти / Зарегистрироваться</button>
-        <p id="status" class="status"></p>
-      </form>
-    </section>
-  </main>
+<h2>Что добавляет мод:</h2>
 
-  <script src="script.js"></script>
+<ul>
+<li>Новые анимации</li>
+<li>Красивые интерфейсы</li>
+<li>Плавные визуальные эффекты</li>
+<li>Современный минималистичный стиль</li>
+</ul>
+
+</section>
+
+<section id="profile" class="tab">
+
+<h1>Профиль</h1>
+
+<div class="profileCard">
+
+<img id="avatar" src="https://via.placeholder.com/120" class="avatar">
+
+<input type="file" id="uploadAvatar">
+
+<p id="userName">Вы не вошли</p>
+
+</div>
+
+</section>
+
+<section id="shop" class="tab">
+
+<h1>Покупки</h1>
+
+<p class="soon">Покупки пока что недоступны :(</p>
+
+</section>
+
+<section id="guides" class="tab">
+
+<h1>Гайды</h1>
+
+<p>Здесь будут гайды по установке мода.</p>
+
+</section>
+
+<section id="news" class="tab">
+
+<h1>Новости</h1>
+
+<p>Здесь будут обновления BareAesthetic.</p>
+
+</section>
+
+<section id="support" class="tab">
+
+<h1>Поддержка</h1>
+
+<p>Если у вас есть проблемы — напишите разработчику.</p>
+
+</section>
+
+</main>
+
+<script src="script.js"></script>
+
 </body>
 </html>
