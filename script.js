@@ -1,21 +1,15 @@
-const buttons = document.querySelectorAll(".nav-btn")
-const slider = document.querySelector(".slider")
+const btns = document.querySelectorAll(".nav-btn")
+const slider = document.querySelector(".nav-slider")
 
-function moveSlider(el){
+btns.forEach(btn=>{
 
-slider.style.width = el.offsetWidth + "px"
-slider.style.left = el.offsetLeft + "px"
-
-}
-
-buttons.forEach(btn=>{
-
-btn.onclick = () => {
+btn.onclick=()=>{
 
 document.querySelector(".nav-btn.active").classList.remove("active")
 btn.classList.add("active")
 
-moveSlider(btn)
+slider.style.width = btn.offsetWidth+"px"
+slider.style.left = btn.offsetLeft+"px"
 
 const tab = btn.dataset.tab
 
@@ -23,51 +17,24 @@ document.querySelectorAll(".tab").forEach(t=>{
 t.classList.remove("active")
 })
 
-document.getElementById(tab).classList.add("active")
+document.getElementById(tab)?.classList.add("active")
 
 }
 
 })
 
-window.onload = ()=>{
+function toggleTheme(){
 
-moveSlider(document.querySelector(".nav-btn.active"))
-
-}
-
-/* avatar upload */
-
-document.getElementById("upload").onchange = e=>{
-
-const file = e.target.files[0]
-
-if(file){
-
-const reader = new FileReader()
-
-reader.onload = e2=>{
-document.getElementById("avatar").src = e2.target.result
-}
-
-reader.readAsDataURL(file)
+document.body.classList.toggle("light")
 
 }
 
+/* color settings */
+
+document.getElementById("textColor").oninput=e=>{
+document.body.style.color=e.target.value
 }
 
-/* fake login */
-
-function login(){
-
-document.getElementById("username").innerText="Вы вошли через Gmail ✔"
-
+document.getElementById("bgColor").oninput=e=>{
+document.body.style.background=e.target.value
 }
-
-/* cursor */
-
-document.addEventListener("mousemove",e=>{
-
-document.body.style.setProperty("--x",e.clientX+"px")
-document.body.style.setProperty("--y",e.clientY+"px")
-
-})
