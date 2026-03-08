@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Вкладки
+  // Переключение вкладок
   document.querySelectorAll('.tab').forEach(tab => {
     tab.addEventListener('click', e => {
       e.preventDefault();
@@ -11,16 +11,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Переключатель темы
-  const toggle = document.getElementById('theme-switch');
-  toggle.addEventListener('change', () => {
-    document.body.classList.toggle('theme-light');
-    document.body.classList.toggle('theme-dark');
-  });
-
-  // Демо формы (можно убрать или заменить на реальный auth позже)
-  document.querySelector('.profile-form').addEventListener('submit', e => {
-    e.preventDefault();
-    alert('Вход (демо)');
+  // Демо регистрации
+  document.querySelector('.reg-btn').addEventListener('click', () => {
+    alert('Регистрация откроется скоро!');
   });
 });
