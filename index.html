@@ -10,11 +10,11 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body class="theme-dark">
-  <canvas id="cosmic-canvas"></canvas>
+  <canvas id="fireworks-canvas"></canvas>
 
   <nav class="liquid-nav">
     <div class="logo">
-      <div class="logo-drop">✧</div>
+      <div class="logo-drop">💎</div>
       BareAesthetic
     </div>
 
@@ -46,21 +46,21 @@
 
     <section id="about" class="section">
       <h1>О моде</h1>
-      <p>BareAesthetic превращает обычный Minecraft 1.16.5 в невероятно атмосферный мир. Он не заменяет текстуры блоков, а работает на уровне освещения, теней, бликов и цветовой гармонии. В результате получаешь ощущение живого, дышащего пространства: тёплые закаты, лёгкий туман в лесах, мерцающая вода и глубокие, уютные пещеры.</p>
+      <p>BareAesthetic превращает Minecraft 1.16.5 в невероятно атмосферный мир. Мод не меняет текстуры блоков, а работает на уровне освещения, теней, бликов и цветовой гармонии. Закаты становятся тёплыми, леса — глубокими, вода — живой, а пещеры — таинственными. Всё выглядит так, будто ты действительно в настоящем, дышащем мире.</p>
       <p>Лёгкий, совместим с Forge, почти не нагружает систему — красота без компромиссов.</p>
     </section>
 
     <section id="visuals" class="section">
       <h1>Визуалы</h1>
-      <p>Вот что делает игру по-настоящему атмосферной:</p>
+      <p>Мод делает игру по-настоящему атмосферной:</p>
       <div class="visuals-grid">
         <div class="visual-card liquid-card">
           <h3>Мягкие тени и объём</h3>
-          <p>Блоки и ландшафт получают естественную глубину и мягкие переходы света</p>
+          <p>Блоки и ландшафт получают естественную глубину и плавные переходы света</p>
         </div>
         <div class="visual-card liquid-card">
           <h3>Объёмные лучи света</h3>
-          <p>Солнце, факелы и луна создают живые, проникающие лучи</p>
+          <p>Солнце, луна и факелы создают живые, проникающие лучи</p>
         </div>
         <div class="visual-card liquid-card">
           <h3>Атмосферный туман и частицы</h3>
@@ -68,7 +68,7 @@
         </div>
         <div class="visual-card liquid-card">
           <h3>Тёплая цветокоррекция</h3>
-          <p>Цвета становятся насыщенными, но остаются естественными и уютными</p>
+          <p>Цвета становятся насыщенными, уютными и естественными</p>
         </div>
       </div>
     </section>
@@ -76,14 +76,14 @@
     <section id="purchase" class="section">
       <h1>Покупка</h1>
       <p class="sad-text">Покупки пока что недоступны :(</p>
-      <p>Но скоро всё изменится — следи за новостями.</p>
+      <p>Но скоро всё появится — следи за новостями.</p>
     </section>
 
     <section id="support" class="section">
       <h1>Поддержка</h1>
       <div class="faq-item liquid-card">
         <h3>Как установить мод?</h3>
-        <p>Установи Forge для 1.16.5 → положи .jar в папку mods.</p>
+        <p>Установи Forge 1.16.5 → положи .jar в папку mods.</p>
       </div>
       <div class="faq-item liquid-card">
         <h3>Совместим ли с другими модами?</h3>
@@ -97,11 +97,17 @@
 
     <section id="profile" class="section">
       <h1>Профиль</h1>
-      <form class="profile-form liquid-card">
-        <input type="email" placeholder="Email" required>
-        <input type="password" placeholder="Пароль" required>
-        <button type="submit">Войти</button>
-        <button type="button">Создать аккаунт</button>
+      <form id="auth-form" class="profile-form liquid-card">
+        <input type="text" id="nickname" placeholder="Никнейм" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Пароль" required>
+        <div class="avatar-upload">
+          <label for="avatar-input">Сменить фото (JPG/PNG)</label>
+          <input type="file" id="avatar-input" accept="image/jpeg,image/png">
+          <img id="avatar-preview" src="" alt="Аватар">
+        </div>
+        <button type="submit">Войти / Зарегистрироваться</button>
+        <p id="status" class="status"></p>
       </form>
     </section>
   </main>
