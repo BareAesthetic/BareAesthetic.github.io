@@ -1,62 +1,94 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>BareAesthetic</title>
+
 <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
+<div class="background"></div>
+
 <header class="navbar">
+
 <div class="logo">BareAesthetic</div>
 
-<nav>
-<button onclick="openTab('home')">Главная</button>
-<button onclick="openTab('profile')">Профиль</button>
-<button onclick="openTab('shop')">Покупки</button>
-<button onclick="openTab('guides')">Гайды</button>
-<button onclick="openTab('news')">Новости</button>
-<button onclick="openTab('support')">Поддержка</button>
-</nav>
+<nav class="nav">
 
-<button class="loginBtn" onclick="loginGoogle()">Вход через Gmail</button>
+<div class="slider"></div>
+
+<button class="nav-btn active" data-tab="home">Главная</button>
+<button class="nav-btn" data-tab="visuals">Визуалы</button>
+<button class="nav-btn" data-tab="profile">Профиль</button>
+<button class="nav-btn" data-tab="shop">Покупки</button>
+
+</nav>
 
 </header>
 
 <main>
 
 <section id="home" class="tab active">
-<h1>Мод BareAesthetic</h1>
 
-<p>
-BareAesthetic — это эстетичный визуальный мод для Minecraft 1.16.5.
-Он делает игру красивее и современнее без изменения геймплея.
+<h1 class="title">
+BareAesthetic Visual Mod
+</h1>
+
+<p class="subtitle">
+Эстетичные визуалы для Minecraft 1.16.5
 </p>
 
-<h2>Что добавляет мод:</h2>
+<button class="cta">Скоро в продаже</button>
 
-<ul>
-<li>Новые анимации</li>
-<li>Красивые интерфейсы</li>
-<li>Плавные визуальные эффекты</li>
-<li>Современный минималистичный стиль</li>
-</ul>
+</section>
+
+<section id="visuals" class="tab">
+
+<h2>Визуалы</h2>
+
+<div class="visual-grid">
+
+<div class="visual-card">
+<img src="https://i.imgur.com/F3O9F6K.png">
+<h3>Glass ESP</h3>
+<p>Стеклянный эффект игроков</p>
+</div>
+
+<div class="visual-card">
+<img src="https://i.imgur.com/FT7s5sL.png">
+<h3>Liquid Glow</h3>
+<p>Плавное свечение</p>
+</div>
+
+<div class="visual-card">
+<img src="https://i.imgur.com/kX5v2Ka.png">
+<h3>Chrome Armor</h3>
+<p>Хромированная броня</p>
+</div>
+
+</div>
 
 </section>
 
 <section id="profile" class="tab">
 
-<h1>Профиль</h1>
+<h2>Профиль</h2>
 
-<div class="profileCard">
+<div class="profile">
 
-<img id="avatar" src="https://via.placeholder.com/120" class="avatar">
+<img id="avatar" src="https://i.imgur.com/2yaf2wb.png">
 
-<input type="file" id="uploadAvatar">
+<input type="file" id="upload">
 
-<p id="userName">Вы не вошли</p>
+<p id="username">Вы не вошли</p>
+
+<button onclick="login()">Войти через Gmail</button>
 
 </div>
 
@@ -64,33 +96,9 @@ BareAesthetic — это эстетичный визуальный мод для
 
 <section id="shop" class="tab">
 
-<h1>Покупки</h1>
+<h2>Покупки</h2>
 
 <p class="soon">Покупки пока что недоступны :(</p>
-
-</section>
-
-<section id="guides" class="tab">
-
-<h1>Гайды</h1>
-
-<p>Здесь будут гайды по установке мода.</p>
-
-</section>
-
-<section id="news" class="tab">
-
-<h1>Новости</h1>
-
-<p>Здесь будут обновления BareAesthetic.</p>
-
-</section>
-
-<section id="support" class="tab">
-
-<h1>Поддержка</h1>
-
-<p>Если у вас есть проблемы — напишите разработчику.</p>
 
 </section>
 
