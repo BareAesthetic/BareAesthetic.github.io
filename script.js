@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Переключение тем
+  // Темы (цикл из 3)
   const toggle = document.getElementById('theme-switch');
   toggle.addEventListener('change', () => {
     document.body.classList.remove(...themes);
@@ -26,8 +26,36 @@ document.addEventListener('DOMContentLoaded', () => {
     label.querySelector('.aero').style.opacity = currentTheme === 2 ? 1 : 0;
   });
 
-  // Космос — звёзды + кометы
-  const canvas = document.getElementById('cosmic-canvas');
+  // Профиль + ник FANFANCIK → Админ
+  const form = document.getElementById('auth-form');
+  const nickInput = document.getElementById('nickname');
+  const status = document.getElementById('status');
+  const avatarInput = document.getElementById('avatar-input');
+  const avatarPreview = document.getElementById('avatar-preview');
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const nick = nickInput.value.trim();
+
+    if (nick.toLowerCase() === 'fanfancik') {
+      status.innerHTML = '👑 FANFANCIK — Админ / Главный';
+      status.style.color = '#fbbf24';
+    } else {
+      status.textContent = 'Вход выполнен!';
+    }
+  });
+
+  avatarInput.addEventListener('change', e => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = ev => avatarPreview.src = ev.target.result;
+      reader.readAsDataURL(file);
+    }
+  });
+
+  // Фейерверки / ракеты
+  const canvas = document.getElementById('fireworks-canvas');
   const ctx = canvas.getContext('2d');
   let w, h;
 
@@ -38,67 +66,69 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', resize);
   resize();
 
-  const stars = [];
-  for (let i = 0; i < 300; i++) {
-    stars.push({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      r: Math.random() * 1.2 + 0.3,
-      alpha: Math.random() * 0.6 + 0.4,
-      speed: Math.random() * 0.0008 + 0.0003
+  const fireworks = [];
+
+  function createFirework() {
+    const x = Math.random() * w;
+    fireworks.push({
+      x, y: -50,
+      vy: Math.random() * 8 + 10,
+      color: `hsl(${Math.random()*360}, 100%, 60%)`,
+      exploded: false,
+      particles: []
     });
   }
 
-  const comets = [];
-  function spawnComet() {
-    comets.push({
-      x: Math.random() * w,
-      y: -100,
-      len: Math.random() * 120 + 80,
-      speed: Math.random() * 12 + 8,
-      alpha: 1
-    });
-  }
+  setInterval(createFirework, 1800);
 
-  setInterval(spawnComet, 3000);
-
-  function draw() {
-    ctx.fillStyle = 'rgba(0,0,20,0.06)';
+  function animate() {
+    ctx.fillStyle = 'rgba(0,0,20,0.05)';
     ctx.fillRect(0, 0, w, h);
 
-    // Звёзды
-    stars.forEach(s => {
-      s.alpha = 0.4 + Math.sin(Date.now() * s.speed) * 0.6;
-      ctx.fillStyle = `rgba(255,255,255,${s.alpha})`;
-      ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
-      ctx.fill();
-    });
+    fireworks.forEach((fw, i) => {
+      if (!fw.exploded) {
+        fw.y += fw.vy;
+        if (fw.y > h * 0.4) {
+          fw.exploded = true;
+          for (let j = 0; j < 60; j++) {
+            const angle = Math.random() * Math.PI * 2;
+            const speed = Math.random() * 5 + 2;
+            fw.particles.push({
+              x: fw.x, y: fw.y,
+              vx: Math.cos(angle) * speed,
+              vy: Math.sin(angle) * speed - 3,
+              life: 80 + Math.random()*40,
+              color: fw.color
+            });
+          }
+        }
 
-    // Кометы
-    comets.forEach((c, i) => {
-      c.y += c.speed;
-      c.alpha -= 0.008;
+        ctx.fillStyle = fw.color;
+        ctx.beginPath();
+        ctx.arc(fw.x, fw.y, 5, 0, Math.PI*2);
+        ctx.fill();
+      } else {
+        fw.particles.forEach((p, j) => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.12;
+          p.life--;
 
-      if (c.alpha <= 0 || c.y > h + 100) {
-        comets.splice(i, 1);
-        return;
+          ctx.globalAlpha = p.life / 120;
+          ctx.fillStyle = p.color;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, 3, 0, Math.PI*2);
+          ctx.fill();
+
+          if (p.life <= 0) fw.particles.splice(j, 1);
+        });
+
+        if (fw.particles.length === 0) fireworks.splice(i, 1);
       }
-
-      const g = ctx.createLinearGradient(c.x, c.y, c.x - 30, c.y + c.len);
-      g.addColorStop(0, `rgba(220,240,255,${c.alpha})`);
-      g.addColorStop(1, 'transparent');
-
-      ctx.strokeStyle = g;
-      ctx.lineWidth = 4;
-      ctx.beginPath();
-      ctx.moveTo(c.x, c.y);
-      ctx.lineTo(c.x - 30, c.y + c.len);
-      ctx.stroke();
     });
 
-    requestAnimationFrame(draw);
+    requestAnimationFrame(animate);
   }
 
-  draw();
+  animate();
 });
