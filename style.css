@@ -1,25 +1,21 @@
 *{
-
 margin:0;
 padding:0;
 box-sizing:border-box;
-
 font-family:'Quicksand',sans-serif;
-
 }
+
+/* фон */
 
 body{
 
 background:url("image.png") center/cover no-repeat fixed;
 
-min-height:100vh;
-
 color:white;
 
-position:relative;
+min-height:100vh;
 
 }
-
 
 /* затемнение */
 
@@ -37,11 +33,10 @@ height:100%;
 
 background:rgba(0,0,0,0.35);
 
-pointer-events:none;
-
-z-index:0;
+z-index:-1;
 
 }
+
 
 /* header */
 
@@ -53,21 +48,53 @@ align-items:center;
 
 padding:20px 40px;
 
-background:rgba(0,0,0,0.4);
+background:rgba(0,0,0,0.3);
 
-backdrop-filter:blur(15px);
+backdrop-filter:blur(10px);
 
 }
 
+/* логотип */
+
+.logo{
+
+font-size:24px;
+font-weight:700;
+
+position:relative;
+
+animation:logoGlow 6s infinite alternate;
+
+}
+
+@keyframes logoGlow{
+
+0%{text-shadow:0 0 5px #ff9ecb;}
+100%{text-shadow:0 0 20px #ff9ecb;}
+
+}
+
+/* карандашное подчеркивание */
+
+.underline{
+
+width:120px;
+height:6px;
+
+background:url("pencil.png");
+
+background-size:cover;
+
+margin-top:5px;
+
+}
 
 /* меню */
 
 nav a{
 
 margin:0 15px;
-
 cursor:pointer;
-
 transition:.3s;
 
 }
@@ -78,13 +105,22 @@ opacity:.7;
 
 }
 
+/* кнопка темы */
+
+.theme{
+
+background:none;
+border:none;
+font-size:18px;
+cursor:pointer;
+
+}
 
 /* страницы */
 
 .page{
 
 display:none;
-
 padding:100px 40px;
 
 }
@@ -94,7 +130,6 @@ padding:100px 40px;
 display:block;
 
 }
-
 
 /* заголовок */
 
@@ -106,23 +141,13 @@ margin-bottom:20px;
 
 }
 
-.subtitle{
-
-opacity:.8;
-
-}
-
-
 /* карточки */
 
 .cards{
 
 display:flex;
-
 gap:30px;
-
 margin-top:60px;
-
 flex-wrap:wrap;
 
 }
@@ -149,14 +174,13 @@ background:rgba(255,255,255,.2);
 
 }
 
-
 /* центр */
 
 .center{
 
 text-align:center;
 
-background:rgba(0,0,0,.5);
+background:rgba(0,0,0,.4);
 
 padding:40px;
 
@@ -168,52 +192,22 @@ margin:auto;
 
 }
 
-
-/* профиль */
-
-.profile{
-
-text-align:center;
-
-background:rgba(0,0,0,.5);
-
-padding:40px;
-
-border-radius:20px;
-
-max-width:300px;
-
-margin:auto;
-
-}
-
-.profile img{
-
-width:120px;
-
-border-radius:50%;
-
-margin-bottom:20px;
-
-}
-
-
 /* светлая тема */
 
 .light{
 
-color:black;
+color:#111;
 
 }
 
 .light header{
 
-background:rgba(255,255,255,.7);
+background:rgba(255,255,255,0.6);
 
 }
 
 .light .card{
 
-background:rgba(255,255,255,.7);
+background:rgba(255,255,255,0.7);
 
 }
