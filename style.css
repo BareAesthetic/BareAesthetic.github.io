@@ -1,93 +1,119 @@
+* { margin:0; padding:0; box-sizing:border-box; }
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   color: #fff;
-  background: url('https://images.wallpaperscraft.com/image/single/minecraft_cherry_blossom_forest_night_aesthetic_123456.jpg') no-repeat center/cover fixed;
-  position: relative;
+  background: url('https://images.unsplash.com/photo-1617791160505-6f00504e3519?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80') no-repeat center/cover fixed;
   min-height: 100vh;
-  overflow: hidden;
+  transition: background-color 0.5s, color 0.5s;
 }
 
-.background-particles {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle, rgba(255, 100, 50, 0.1) 0%, transparent 70%);
-  animation: glow 10s ease-in-out infinite alternate;
+body.theme-light {
+  background-color: #f0f4f8;
+  color: #1a1a1a;
 }
 
-@keyframes glow {
-  0% { opacity: 0.3; }
-  100% { opacity: 0.6; }
+body.theme-dark {
+  background-color: rgba(0,0,0,0.4);
+  color: #e0e0e0;
 }
 
-/* Liquid Glass как капля */
-.glass-nav, .glass-drop, .section {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px) saturate(120%);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 28px;
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), inset 0 0 10px rgba(255, 255, 255, 0.08);
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.glass-drop:hover {
-  transform: scale(1.05) translateY(-4px);
-  opacity: 0.95;
+/* Liquid Glass (капельный эффект) */
+.glass, .glass-nav {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.25), inset 0 0 12px rgba(255,255,255,0.05);
 }
 
 /* Навбар */
 .glass-nav {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 12px 28px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 40px;
-  z-index: 10;
+  gap: 40px;
+  max-width: 90%;
+  z-index: 100;
 }
 
-.logo {
-  font-size: 1.4rem;
-  font-weight: bold;
-}
+.logo { font-size: 1.5rem; font-weight: 600; }
 
 ul {
   list-style: none;
   display: flex;
-  gap: 24px;
+  gap: 20px;
 }
 
 .tab {
-  color: #fff;
+  color: inherit;
   text-decoration: none;
   padding: 8px 16px;
   border-radius: 999px;
-  transition: background 0.3s;
+  transition: all 0.3s;
 }
 
 .tab.active, .tab:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255,255,255,0.15);
 }
 
-.reg-btn {
-  background: #ff7b00;
-  border: none;
-  color: #fff;
-  padding: 10px 20px;
+/* Тема переключатель */
+.theme-toggle {
+  position: relative;
+  width: 54px;
+  height: 28px;
+}
+
+#theme-switch {
+  display: none;
+}
+
+.toggle-label {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(255,255,255,0.15);
   border-radius: 999px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  transition: background 0.4s;
+}
+
+.sun, .moon {
+  font-size: 18px;
+  transition: transform 0.4s, opacity 0.4s;
+}
+
+#theme-switch:checked + .toggle-label {
+  background: rgba(0,0,0,0.3);
+}
+
+#theme-switch:checked + .toggle-label .sun {
+  transform: translateX(26px);
+  opacity: 0;
+}
+
+#theme-switch:checked + .toggle-label .moon {
+  transform: translateX(-26px);
+  opacity: 1;
 }
 
 /* Секции */
+main { padding: 140px 20px 60px; max-width: 1000px; margin: 0 auto; }
+
 .section {
-  padding: 180px 40px 80px;
-  text-align: center;
   display: none;
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .section.active {
@@ -96,60 +122,12 @@ ul {
   transform: translateY(0);
 }
 
-h1 {
-  font-size: 4rem;
-  line-height: 1.1;
-  margin-bottom: 20px;
-}
+h1 { font-size: 3.2rem; margin-bottom: 1rem; text-align: center; }
+p  { font-size: 1.3rem; line-height: 1.6; text-align: center; max-width: 800px; margin: 0 auto; }
 
-p {
-  font-size: 1.4rem;
-  max-width: 800px;
-  margin: 0 auto 40px;
-}
-
-.cta-btn {
-  background: #ff7b00;
-  border: none;
-  color: #fff;
-  padding: 16px 32px;
-  border-radius: 999px;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-
-/* Кастомизация */
-.modules-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 24px;
-  max-width: 1200px;
-  margin: 40px auto;
-}
-
-.module-card {
-  padding: 32px;
-  text-align: center;
-  cursor: pointer;
-}
-
-.module-card h3 {
-  font-size: 1.6rem;
-  margin-bottom: 12px;
-}
-
-/* FAQ */
-.faq-item {
-  max-width: 800px;
-  margin: 20px auto;
-  text-align: left;
-  padding: 16px;
-  border-radius: 16px;
-  background: rgba(255,255,255,0.05);
-}
-
+/* Профиль */
 .profile-form {
-  max-width: 400px;
+  max-width: 420px;
   margin: 40px auto;
   padding: 32px;
 }
@@ -163,14 +141,26 @@ input, button {
   font-size: 1.1rem;
 }
 
-input {
-  background: rgba(255,255,255,0.1);
-  color: #fff;
+input { background: rgba(255,255,255,0.12); color: inherit; }
+button {
+  background: #ff6b00;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
 }
 
-button {
-  background: #ff7b00;
-  color: #fff;
-  cursor: pointer;
+/* Кастом модули */
+.modules {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.module {
+  padding: 24px;
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 
