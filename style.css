@@ -1,189 +1,176 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  min-height: 100vh;
-  position: relative;
-  overflow-x: hidden;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   color: #fff;
-  transition: background 0.8s ease, color 0.6s ease;
+  background: url('https://images.wallpaperscraft.com/image/single/minecraft_cherry_blossom_forest_night_aesthetic_123456.jpg') no-repeat center/cover fixed;
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
 }
 
-#bg-canvas {
-  position: fixed;
+.background-particles {
+  position: absolute;
   inset: 0;
-  z-index: -2;
-  pointer-events: none;
+  background: radial-gradient(circle, rgba(255, 100, 50, 0.1) 0%, transparent 70%);
+  animation: glow 10s ease-in-out infinite alternate;
 }
 
-/* ------------------ Темы ------------------ */
-body.theme-light  { background: linear-gradient(135deg, #e0e7ff, #c3dafe); color: #1e293b; }
-body.theme-dark   { background: linear-gradient(135deg, #0f172a, #1e293b); }
-body.theme-gold   { background: linear-gradient(135deg, #1a120b, #3c2f2f, #8b6f47); }
-body.theme-forest { background: linear-gradient(135deg, #1e3a2f, #2d5a45, #3c7a5b); }
+@keyframes glow {
+  0% { opacity: 0.3; }
+  100% { opacity: 0.6; }
+}
 
-/* ------------------ Liquid Glass ------------------ */
-.glass, .glass-nav, .profile-card, .page.active {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 24px;
-  box-shadow: 
-    0 8px 32px rgba(0,0,0,0.25),
-    inset 0 0 20px rgba(255,255,255,0.06);
-  transition: all 0.4s ease;
+/* Liquid Glass как капля */
+.glass-nav, .glass-drop, .section {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px) saturate(120%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 28px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), inset 0 0 10px rgba(255, 255, 255, 0.08);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.glass-drop:hover {
+  transform: scale(1.05) translateY(-4px);
+  opacity: 0.95;
 }
 
 /* Навбар */
 .glass-nav {
   position: fixed;
-  top: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 12px 24px;
+  top: 0;
+  left: 0;
+  right: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 40px;
-  z-index: 100;
-  max-width: 90vw;
+  padding: 12px 40px;
+  z-index: 10;
 }
 
-.nav-left {
+.logo {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+ul {
+  list-style: none;
   display: flex;
-  gap: 8px;
+  gap: 24px;
 }
 
 .tab {
-  padding: 10px 18px;
-  border-radius: 999px;
+  color: #fff;
   text-decoration: none;
-  color: inherit;
-  font-weight: 500;
-  transition: all 0.3s;
+  padding: 8px 16px;
+  border-radius: 999px;
+  transition: background 0.3s;
 }
 
-.tab:hover, .tab.active {
-  background: rgba(255,255,255,0.15);
+.tab.active, .tab:hover {
+  background: rgba(255, 255, 255, 0.15);
 }
 
-/* Контент */
-.content {
-  padding: 140px 20px 60px;
-  max-width: 900px;
-  margin: 0 auto;
+.reg-btn {
+  background: #ff7b00;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 999px;
+  cursor: pointer;
 }
 
-.page {
+/* Секции */
+.section {
+  padding: 180px 40px 80px;
+  text-align: center;
   display: none;
   opacity: 0;
-  transform: translateY(20px);
+  transform: translateY(30px);
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.page.active {
+.section.active {
   display: block;
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Текст */
 h1 {
-  font-size: 3.4rem;
-  font-weight: 700;
-  margin-bottom: 0.8rem;
-  text-align: center;
-  background: linear-gradient(90deg, #fff, #ddd, #fff);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  font-size: 4rem;
+  line-height: 1.1;
+  margin-bottom: 20px;
 }
 
-p, .soon {
-  font-size: 1.3rem;
-  line-height: 1.6;
-  text-align: center;
-  opacity: 0.9;
+p {
+  font-size: 1.4rem;
+  max-width: 800px;
+  margin: 0 auto 40px;
 }
 
-.soon {
-  font-size: 1.8rem;
-  font-weight: 600;
-  margin-top: 2rem;
-}
-
-/* Профиль */
-.profile-card {
-  padding: 40px;
-  max-width: 420px;
-  margin: 40px auto;
-  text-align: center;
-}
-
-.avatar-preview {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  overflow: hidden;
-  display: block;
-  margin: 0 auto 24px;
+.cta-btn {
+  background: #ff7b00;
+  border: none;
+  color: #fff;
+  padding: 16px 32px;
+  border-radius: 999px;
+  font-size: 1.2rem;
   cursor: pointer;
-  border: 3px solid rgba(255,255,255,0.2);
 }
 
-.avatar-preview img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+/* Кастомизация */
+.modules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 40px auto;
 }
 
-.input {
+.module-card {
+  padding: 32px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.module-card h3 {
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+}
+
+/* FAQ */
+.faq-item {
+  max-width: 800px;
+  margin: 20px auto;
+  text-align: left;
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.05);
+}
+
+.profile-form {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 32px;
+}
+
+input, button {
   width: 100%;
-  padding: 14px 18px;
+  padding: 14px;
   margin: 12px 0;
   border: none;
   border-radius: 16px;
-  background: rgba(255,255,255,0.12);
-  color: white;
   font-size: 1.1rem;
 }
 
-.btn {
-  padding: 14px 32px;
-  border: none;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.2);
-  color: white;
-  font-size: 1.1rem;
-  cursor: pointer;
-  margin-top: 16px;
+input {
+  background: rgba(255,255,255,0.1);
+  color: #fff;
 }
 
-.btn:hover {
-  background: rgba(255,255,255,0.35);
-}
-
-/* Темы кнопки */
-.theme-picker {
-  display: flex;
-  gap: 8px;
-}
-
-.theme-picker button {
-  padding: 8px 14px;
-  border-radius: 999px;
-  border: none;
-  background: rgba(255,255,255,0.12);
-  color: inherit;
+button {
+  background: #ff7b00;
+  color: #fff;
   cursor: pointer;
 }
 
-.theme-picker button.active,
-.theme-picker button:hover {
-  background: rgba(255,255,255,0.25);
-}
