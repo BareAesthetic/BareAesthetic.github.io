@@ -6,56 +6,92 @@
   <title>BareAesthetic</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
-  <!-- Фон с частицами-каплями -->
+<body class="theme-dark">
   <div class="liquid-bg"></div>
 
   <nav class="liquid-nav">
     <div class="logo">
-      <span class="drop-icon">💧</span>BareAesthetic
+      <div class="logo-drop">💧</div>
+      <span>BareAesthetic</span>
     </div>
+
     <ul>
       <li><a href="#home" class="tab active">Главная</a></li>
       <li><a href="#about" class="tab">О моде</a></li>
       <li><a href="#visuals" class="tab">Визуалы</a></li>
+      <li><a href="#purchase" class="tab">Покупка</a></li>
+      <li><a href="#support" class="tab">Поддержка</a></li>
       <li><a href="#profile" class="tab">Профиль</a></li>
     </ul>
-    <button class="reg-btn">Зарегистрироваться</button>
+
+    <div class="theme-toggle">
+      <input type="checkbox" id="theme-switch" checked>
+      <label for="theme-switch" class="toggle-label">
+        <span class="sun">☀️</span>
+        <span class="moon">🌙</span>
+      </label>
+    </div>
   </nav>
 
   <main>
     <section id="home" class="section active">
-      <h1>Командный игровой мод</h1>
-      <h2>с BareAesthetic</h2>
-      <p>Красивые визуалы без изменения базовых текстур — просто делает Minecraft уютнее и эстетичнее.</p>
+      <h1>BareAesthetic</h1>
+      <h2>изменит твой Minecraft</h2>
+      <p>Красивые визуалы без изменения базовых текстур — мир становится уютнее, атмосфернее и живее.</p>
     </section>
 
     <section id="about" class="section">
       <h1>О моде</h1>
-      <p>BareAesthetic — это лёгкий эстетический мод для Minecraft 1.16.5. Он не перекрашивает траву, камень или дерево, а добавляет мягкие тени, объёмное освещение, лёгкие блики и приятную цветовую гармонию. Мир становится живым и атмосферным, но остаётся полностью ванильным по духу.</p>
-      <p>Идеально для тех, кто хочет красоты без шейдеров и тяжёлых текстурпаков.</p>
+      <p>BareAesthetic — это визуальный мод для Minecraft 1.16.5, который делает игру невероятно атмосферной. Он не меняет текстуры блоков, а улучшает освещение, добавляет мягкие тени, объёмные лучи света, лёгкие блики и приятную цветовую гармонию. Всё выглядит так, будто ты действительно находишься в живом, дышащем мире — тёплые вечера, туманные утра, мерцающие воды и глубокие леса.</p>
+      <p>Мод лёгкий, работает на Forge и идеально подходит для тех, кто хочет красоты без потери производительности и ванильного духа игры.</p>
     </section>
 
     <section id="visuals" class="section">
       <h1>Визуалы</h1>
-      <p>Вот что делает мод особенным — всё работает через шейдер-подобные улучшения без изменения оригинальных текстур:</p>
+      <p>Мод превращает обычный Minecraft в атмосферный мир:</p>
       <div class="visuals-grid">
         <div class="visual-card liquid-drop">
-          <h3>Мягкие тени</h3>
-          <p>Блоки получают естественные градиенты света и тени</p>
+          <img src="https://via.placeholder.com/320x180/2d6a4f/ffffff?text=Мягкие+тени+и+объём" alt="Визуал 1">
+          <h3>Мягкие тени и объём</h3>
+          <p>Блоки и ландшафт получают естественную глубину</p>
         </div>
         <div class="visual-card liquid-drop">
-          <h3>Объёмное освещение</h3>
-          <p>Свет от факелов и солнца выглядит объёмным</p>
+          <img src="https://via.placeholder.com/320x180/355e3b/ffffff?text=Объёмные+лучи+света" alt="Визуал 2">
+          <h3>Объёмные лучи света</h3>
+          <p>Свет от солнца и факелов выглядит живым</p>
         </div>
         <div class="visual-card liquid-drop">
-          <h3>Лёгкие блики</h3>
-          <p>Вода, стекло и металлы получают красивые отражения</p>
+          <img src="https://via.placeholder.com/320x180/4a7043/ffffff?text=Атмосферный+туман" alt="Визуал 3">
+          <h3>Атмосферный туман и частицы</h3>
+          <p>Лёгкий туман и пыль в воздухе добавляют магии</p>
         </div>
         <div class="visual-card liquid-drop">
+          <img src="https://via.placeholder.com/320x180/5a8c5a/ffffff?text=Тёплая+цветокоррекция" alt="Визуал 4">
           <h3>Тёплая цветокоррекция</h3>
-          <p>Цвета становятся насыщеннее, но не кричащими</p>
+          <p>Цвета становятся насыщенными, но естественными</p>
         </div>
+      </div>
+    </section>
+
+    <section id="purchase" class="section">
+      <h1>Покупка</h1>
+      <p class="sad-text">Покупки пока что недоступны :(</p>
+      <p>Следи за обновлениями — скоро всё появится.</p>
+    </section>
+
+    <section id="support" class="section">
+      <h1>Поддержка</h1>
+      <div class="faq-item liquid-drop">
+        <h3>Как установить мод?</h3>
+        <p>Установи Forge 1.16.5 → положи .jar в папку mods.</p>
+      </div>
+      <div class="faq-item liquid-drop">
+        <h3>Работает ли с другими модами?</h3>
+        <p>Да, совместим с большинством модов на Forge.</p>
+      </div>
+      <div class="faq-item liquid-drop">
+        <h3>Нужен ли OptiFine?</h3>
+        <p>Нет, но с ним картинка становится ещё красивее.</p>
       </div>
     </section>
 
