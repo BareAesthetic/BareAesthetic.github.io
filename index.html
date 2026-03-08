@@ -1,59 +1,80 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BareAesthetic</title>
-  <link rel="stylesheet" href="style.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BareAesthetic - Эстетичный мод для Minecraft 1.16.5</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-<body class="theme-forest">
-  <!-- Фон с частицами -->
-  <canvas id="bg-canvas"></canvas>
+<body>
+  <!-- Фон с анимациями -->
+  <div class="background-particles"></div>
 
   <nav class="glass-nav">
-    <div class="nav-left">
-      <a href="#home" class="tab active">Главная</a>
-      <a href="#about" class="tab">О моде</a>
-      <a href="#purchase" class="tab">Покупка</a>
-      <a href="#profile" class="tab">Профиль</a>
-    </div>
-    <div class="theme-picker">
-      <button data-theme="light">Свет</button>
-      <button data-theme="dark">Тёмная</button>
-      <button data-theme="gold">Золотая</button>
-      <button data-theme="forest" class="active">Лес</button>
-    </div>
+    <div class="logo">BareAesthetic</div>
+    <ul>
+      <li><a href="#home" class="tab active">Главная</a></li>
+      <li><a href="#about" class="tab">О моде</a></li>
+      <li><a href="#custom" class="tab">Кастомизация</a></li>
+      <li><a href="#faq" class="tab">FAQ</a></li>
+      <li><a href="#profile" class="tab">Профиль</a></li>
+    </ul>
+    <button class="reg-btn">Зарегистрироваться</button>
   </nav>
 
-  <main class="content">
-    <section id="home" class="page active">
-      <h1>BareAesthetic</h1>
-      <p>Мод для Minecraft 1.16.5</p>
-    </section>
+  <section id="home" class="section active">
+    <h1>Командный игровой</h1>
+    <h1>Мод с BareAesthetic.</h1>
+    <p>Красивые визуалы без изменения базовых текстур — просто делает Minecraft уютнее и эстетичнее.</p>
+    <button class="cta-btn">Скачать мод</button>
+  </section>
 
-    <section id="about" class="page">
-      <h1>О моде</h1>
-      <p>BareAesthetic — это попытка сделать Minecraft уютнее и красивее без перегрузки текстурами и шейдерами.</p>
-      <p>Автор вложил очень много времени в подбор цветов, мягкие тени, естественное освещение дерева, камня и травы. Всё выглядит так, будто ты действительно в лесу, но при этом остаётся ванильный дух игры.</p>
-    </section>
+  <section id="about" class="section">
+    <h1>О моде</h1>
+    <p>BareAesthetic — это эстетичный мод для Minecraft 1.16.5, который улучшает визуалы игры без изменения травы, камня или других базовых элементов. Автор вложил душу в мягкие тени, естественное освещение и лёгкие анимации, чтобы мир выглядел живее и уютнее. Это не меняет геймплей, просто делает всё красивее — как будто добавил фильтр премиум-качества.</p>
+    <p>Совместим с Forge, оптимизирован для слабых ПК. Скачай и почувствуй разницу!</p>
+  </section>
 
-    <section id="purchase" class="page">
-      <h1>Покупка</h1>
-      <p class="soon">Покупки будут скоро доступны ✨</p>
-    </section>
-
-    <section id="profile" class="page">
-      <h1>Профиль</h1>
-      <div class="profile-card glass">
-        <input type="file" id="avatar" accept="image/jpeg,image/png" hidden/>
-        <label for="avatar" class="avatar-preview">
-          <img src="https://via.placeholder.com/120?text=Ава" alt="Аватар"/>
-        </label>
-        <input type="text" placeholder="Никнейм" class="input"/>
-        <button class="btn">Сохранить</button>
+  <section id="custom" class="section">
+    <h1>Кастомизация абсолютно</h1>
+    <h1>каждой детали</h1>
+    <div class="modules-grid">
+      <div class="module-card glass-drop" onclick="toggleModule(this)">
+        <h3>Визуалы</h3>
+        <p>Мягкие тени и освещение</p>
       </div>
-    </section>
-  </main>
+      <div class="module-card glass-drop" onclick="toggleModule(this)">
+        <h3>Оптимизация</h3>
+        <p>Улучшение FPS + визуалы</p>
+      </div>
+      <div class="module-card glass-drop" onclick="toggleModule(this)">
+        <h3>Анимации</h3>
+        <p>Плавные переходы блоков</p>
+      </div>
+      <!-- Добавь больше по вкусу -->
+    </div>
+  </section>
+
+  <section id="faq" class="section">
+    <h1>Часто задаваемые вопросы</h1>
+    <div class="faq-item">
+      <h3>Какие ОС поддерживаются?</h3>
+      <p>Windows, macOS, Linux.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Как часто выходят обновления?</h3>
+      <p>Еженедельно.</p>
+    </div>
+  </section>
+
+  <section id="profile" class="section">
+    <h1>Профиль</h1>
+    <form class="profile-form glass-drop">
+      <input type="email" placeholder="Email">
+      <input type="password" placeholder="Пароль">
+      <button>Войти</button>
+    </form>
+  </section>
 
   <script src="script.js"></script>
 </body>
