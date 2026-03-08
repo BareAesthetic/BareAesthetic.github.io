@@ -7,47 +7,47 @@ font-family:system-ui;
 
 body{
 
-background:
+background:url("https://images.unsplash.com/photo-1501785888041-af3ef285b470");
 
-radial-gradient(circle at 20% 20%,#6c5cff33,transparent),
-radial-gradient(circle at 80% 70%,#ff6a0033,transparent),
-#0f0f14;
+background-size:cover;
+
+background-attachment:fixed;
 
 color:white;
+
 min-height:100vh;
 
 }
 
-/* HEADER */
+
+/* стеклянный header */
 
 header{
 
 display:flex;
+
 justify-content:space-between;
+
 align-items:center;
 
 padding:20px 40px;
 
 backdrop-filter:blur(20px);
 
-background:rgba(255,255,255,0.05);
-
-border-bottom:1px solid rgba(255,255,255,0.1);
+background:rgba(0,0,0,0.4);
 
 }
 
-.logo{
 
-font-size:24px;
-font-weight:700;
-
-}
+/* меню */
 
 nav a{
 
 margin:0 15px;
+
 cursor:pointer;
-opacity:0.8;
+
+opacity:.8;
 
 }
 
@@ -57,19 +57,13 @@ opacity:1;
 
 }
 
-.theme-toggle{
-
-cursor:pointer;
-font-size:20px;
-
-}
-
 
 /* страницы */
 
 .page{
 
 display:none;
+
 padding:80px 40px;
 
 }
@@ -81,45 +75,40 @@ display:block;
 }
 
 
-/* текст */
+/* заголовок */
 
 .title{
 
 font-size:60px;
+
 margin-bottom:20px;
 
 }
 
 .subtitle{
 
-opacity:0.7;
+opacity:.7;
 
 }
 
 
-/* преимущества */
+/* карточки */
 
-.advantages{
+.cards{
 
-margin-top:100px;
-
-}
-
-.grid{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+display:flex;
 
 gap:30px;
 
-margin-top:40px;
+margin-top:60px;
+
+flex-wrap:wrap;
 
 }
 
 .card{
 
-background:rgba(255,255,255,0.05);
+background:rgba(255,255,255,.08);
 
 padding:30px;
 
@@ -127,7 +116,7 @@ border-radius:20px;
 
 backdrop-filter:blur(20px);
 
-transition:0.3s;
+transition:.3s;
 
 }
 
@@ -135,26 +124,18 @@ transition:0.3s;
 
 transform:translateY(-5px);
 
-background:rgba(255,255,255,0.08);
-
-}
-
-.big{
-
-max-width:400px;
-margin:auto;
-text-align:center;
+background:rgba(255,255,255,.12);
 
 }
 
 
 /* профиль */
 
-.profile-card{
+.profile{
 
 text-align:center;
 
-background:rgba(255,255,255,0.05);
+background:rgba(0,0,0,.5);
 
 padding:40px;
 
@@ -168,22 +149,76 @@ backdrop-filter:blur(20px);
 
 }
 
-.profile-card img{
+
+/* аватар */
+
+.avatarUpload{
+
+cursor:pointer;
+
+display:inline-block;
+
+}
+
+.avatarUpload img{
 
 width:120px;
+
 height:120px;
 
 border-radius:50%;
-
-margin-bottom:20px;
 
 object-fit:cover;
 
 }
 
-input{
+.avatarUpload input{
 
-margin-top:10px;
+display:none;
+
+}
+
+
+/* настройки */
+
+.settings{
+
+max-width:300px;
+
+margin:auto;
+
+display:flex;
+
+flex-direction:column;
+
+gap:15px;
+
+background:rgba(0,0,0,.5);
+
+padding:30px;
+
+border-radius:20px;
+
+backdrop-filter:blur(20px);
+
+}
+
+
+/* центр карточка */
+
+.centerCard{
+
+text-align:center;
+
+background:rgba(0,0,0,.5);
+
+padding:40px;
+
+border-radius:20px;
+
+max-width:400px;
+
+margin:auto;
 
 }
 
@@ -192,8 +227,9 @@ margin-top:10px;
 
 .cursor{
 
-width:14px;
-height:14px;
+width:12px;
+
+height:12px;
 
 background:white;
 
@@ -207,8 +243,6 @@ transform:translate(-50%,-50%);
 
 mix-blend-mode:difference;
 
-z-index:999;
-
 }
 
 
@@ -216,31 +250,20 @@ z-index:999;
 
 .light{
 
-background:#ffffff;
-color:#111;
+background:white;
+
+color:black;
+
+}
+
+.light header{
+
+background:rgba(255,255,255,.6);
 
 }
 
 .light .card{
 
-background:rgba(0,0,0,0.05);
-
-}
-
-
-/* анимация */
-
-.fade{
-
-opacity:0;
-transform:translateY(40px);
-transition:1s;
-
-}
-
-.fade.show{
-
-opacity:1;
-transform:translateY(0);
+background:rgba(0,0,0,.05);
 
 }
