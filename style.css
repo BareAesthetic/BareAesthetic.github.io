@@ -7,7 +7,7 @@ font-family:system-ui;
 
 body{
 
-background-image:url("https://images6.alphacoders.com/133/1338705.png");
+background-image:url("images/image.png");
 
 background-size:cover;
 
@@ -42,20 +42,13 @@ z-index:-1;
 
 header{
 
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-padding:20px 40px;
-
-backdrop-filter:blur(20px);
+backdrop-filter:blur(15px);
 
 background:rgba(0,0,0,0.4);
 
-}
+border-bottom:1px solid rgba(255,255,255,0.2);
 
+}
 
 /* меню */
 
