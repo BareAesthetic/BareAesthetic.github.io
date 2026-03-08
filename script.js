@@ -1,12 +1,12 @@
 
 // курсор
 
-const cursor = document.querySelector(".cursor")
+const cursor=document.querySelector(".cursor")
 
 document.addEventListener("mousemove",(e)=>{
 
-cursor.style.left = e.clientX+"px"
-cursor.style.top = e.clientY+"px"
+cursor.style.left=e.clientX+"px"
+cursor.style.top=e.clientY+"px"
 
 })
 
@@ -16,7 +16,9 @@ cursor.style.top = e.clientY+"px"
 function openPage(id){
 
 document.querySelectorAll(".page").forEach(p=>{
+
 p.classList.remove("active")
+
 })
 
 document.getElementById(id).classList.add("active")
@@ -24,7 +26,7 @@ document.getElementById(id).classList.add("active")
 }
 
 
-// тема
+// смена темы
 
 function toggleTheme(){
 
@@ -33,13 +35,33 @@ document.body.classList.toggle("light")
 }
 
 
-// меняющийся текст
+// смена цвета сайта
+
+document.getElementById("colorPicker").addEventListener("input",(e)=>{
+
+document.documentElement.style.setProperty("--accent",e.target.value)
+
+})
+
+
+// смена шрифта
+
+document.getElementById("fontSelect").addEventListener("change",(e)=>{
+
+document.body.style.fontFamily=e.target.value
+
+})
+
+
+// смена текста
 
 const texts=[
+
 "Красивый HUD",
 "Лучшие визуалы",
 "Плавные анимации",
 "Лучший клиент"
+
 ]
 
 let i=0
@@ -53,7 +75,7 @@ document.getElementById("changingText").textContent=texts[i]
 },2000)
 
 
-// смена аватарки
+// загрузка аватарки
 
 document.getElementById("upload").addEventListener("change",function(){
 
@@ -78,27 +100,8 @@ reader.readAsDataURL(file)
 
 // Google login
 
-function handleCredentialResponse(response){
+function handleCredentialResponse(){
 
-document.getElementById("username").textContent="Пользователь Google"
-
-}
-
-
-// анимация скролла
-
-const observer=new IntersectionObserver(entries=>{
-
-entries.forEach(entry=>{
-
-if(entry.isIntersecting){
-
-entry.target.classList.add("show")
+document.getElementById("username").textContent="Google пользователь"
 
 }
-
-})
-
-})
-
-document.querySelectorAll(".fade").forEach(el=>observer.observe(el))
