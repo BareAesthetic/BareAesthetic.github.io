@@ -3,7 +3,7 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>BareAesthetic</title>
 
@@ -13,92 +13,159 @@
 
 <body>
 
-<div class="background"></div>
+<div class="bg"></div>
 
 <header class="navbar">
 
-<div class="logo">BareAesthetic</div>
+<div class="logo">BA</div>
 
 <nav class="nav">
 
-<div class="slider"></div>
+<div class="nav-slider"></div>
 
 <button class="nav-btn active" data-tab="home">Главная</button>
 <button class="nav-btn" data-tab="visuals">Визуалы</button>
-<button class="nav-btn" data-tab="profile">Профиль</button>
-<button class="nav-btn" data-tab="shop">Покупки</button>
+<button class="nav-btn" data-tab="cabinet">Кабинет</button>
+<button class="nav-btn" data-tab="settings">Настройки</button>
 
 </nav>
+
+<div class="theme-toggle" onclick="toggleTheme()">
+☀️
+</div>
 
 </header>
 
 <main>
 
-<section id="home" class="tab active">
+<!-- HERO -->
 
-<h1 class="title">
-BareAesthetic Visual Mod
+<section id="home" class="tab active hero">
+
+<h1 class="gradient-text">
+
+BareAesthetic
+
 </h1>
 
 <p class="subtitle">
-Эстетичные визуалы для Minecraft 1.16.5
-</p>
 
-<button class="cta">Скоро в продаже</button>
+Лучшие визуалы для Minecraft 1.16.5
+
+</p>
 
 </section>
 
+<!-- FEATURES -->
+
+<section class="features">
+
+<h2>Почему выбирают наш продукт</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>🔥 Красивые визуалы</h3>
+<p>Современные эффекты игроков</p>
+</div>
+
+<div class="card">
+<h3>⚡ Высокий FPS</h3>
+<p>Никаких лагов</p>
+</div>
+
+<div class="card">
+<h3>🧊 Liquid стиль</h3>
+<p>Уникальный дизайн</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- VISUALS -->
+
 <section id="visuals" class="tab">
 
-<h2>Визуалы</h2>
+<h2>Лучшие визуалы</h2>
 
 <div class="visual-grid">
 
 <div class="visual-card">
-<img src="https://i.imgur.com/F3O9F6K.png">
+
+<img src="images/visual1.png">
+
 <h3>Glass ESP</h3>
-<p>Стеклянный эффект игроков</p>
+
 </div>
 
 <div class="visual-card">
-<img src="https://i.imgur.com/FT7s5sL.png">
+
+<img src="images/visual2.png">
+
 <h3>Liquid Glow</h3>
-<p>Плавное свечение</p>
+
 </div>
 
 <div class="visual-card">
-<img src="https://i.imgur.com/kX5v2Ka.png">
+
+<img src="images/visual3.png">
+
 <h3>Chrome Armor</h3>
-<p>Хромированная броня</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CABINET -->
+
+<section id="cabinet" class="tab">
+
+<h2>Личный кабинет</h2>
+
+<div class="cabinet">
+
+<div class="profile-box">
+
+<img src="images/avatar.png" class="avatar">
+
+<div>
+
+<label>Никнейм</label>
+<input type="text" value="Player">
+
+<label>Email</label>
+<input type="text" value="example@gmail.com">
+
+</div>
+
+</div>
+
+<div class="account-info">
+
+<p>ID: 140882</p>
+<p>Группа: Пользователь</p>
+<p>Бан: Нет</p>
+
 </div>
 
 </div>
 
 </section>
 
-<section id="profile" class="tab">
+<!-- SETTINGS -->
 
-<h2>Профиль</h2>
+<section id="settings" class="tab">
 
-<div class="profile">
+<h2>Настройки</h2>
 
-<img id="avatar" src="https://i.imgur.com/2yaf2wb.png">
+<label>Цвет текста</label>
+<input type="color" id="textColor">
 
-<input type="file" id="upload">
-
-<p id="username">Вы не вошли</p>
-
-<button onclick="login()">Войти через Gmail</button>
-
-</div>
-
-</section>
-
-<section id="shop" class="tab">
-
-<h2>Покупки</h2>
-
-<p class="soon">Покупки пока что недоступны :(</p>
+<label>Цвет фона</label>
+<input type="color" id="bgColor">
 
 </section>
 
