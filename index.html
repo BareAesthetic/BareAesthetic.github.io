@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -25,10 +27,9 @@
 <a onclick="openPage('home')">Главная</a>
 <a onclick="openPage('shop')">Покупки</a>
 <a onclick="openPage('profile')">Профиль</a>
+<a onclick="openPage('settings')">Настройки</a>
 
 </nav>
-
-<div class="theme-toggle" onclick="toggleTheme()">🌗</div>
 
 </header>
 
@@ -38,44 +39,46 @@
 <section id="home" class="page active">
 
 <h1 class="title">
-BareAesthetic — 
+
+BareAesthetic
+
 <span id="changingText">Красивый HUD</span>
+
 </h1>
 
 <p class="subtitle">
-Мод для Minecraft 1.16.5 с лучшими визуалами
+
+Лучший визуальный мод для Minecraft 1.16.5
+
 </p>
 
-
-<section class="advantages fade">
-
-<h2>Наши преимущества</h2>
-
-<div class="grid">
+<div class="cards">
 
 <div class="card">
-<h3>👁 Красивый внешний вид</h3>
-<p>Большое количество визуальных функций.</p>
+
+<h3>🎨 Красивый интерфейс</h3>
+
+<p>Стильный HUD и визуалы.</p>
+
 </div>
 
 <div class="card">
+
 <h3>⚡ Оптимизация</h3>
-<p>Работает плавно даже на слабых ПК.</p>
+
+<p>Работает плавно.</p>
+
 </div>
 
 <div class="card">
-<h3>🎨 Кастомизация</h3>
-<p>Настраивай HUD как хочешь.</p>
-</div>
 
-<div class="card">
-<h3>🔒 Безопасность</h3>
-<p>Клиент не содержит вредоносного кода.</p>
-</div>
+<h3>🛡 Безопасность</h3>
+
+<p>Клиент безопасен.</p>
 
 </div>
 
-</section>
+</div>
 
 </section>
 
@@ -84,7 +87,7 @@ BareAesthetic —
 
 <section id="shop" class="page">
 
-<div class="card big">
+<div class="centerCard">
 
 <h2>Покупки</h2>
 
@@ -99,11 +102,15 @@ BareAesthetic —
 
 <section id="profile" class="page">
 
-<div class="profile-card">
+<div class="profile">
+
+<label class="avatarUpload">
 
 <img id="avatar" src="https://i.imgur.com/2DhmtJ4.png">
 
 <input type="file" id="upload">
+
+</label>
 
 <h2 id="username">Гость</h2>
 
@@ -119,7 +126,40 @@ data-callback="handleCredentialResponse">
 </section>
 
 
+<!-- НАСТРОЙКИ -->
+
+<section id="settings" class="page">
+
+<div class="settings">
+
+<h2>Настройки</h2>
+
+<label>Цвет сайта</label>
+
+<input type="color" id="colorPicker">
+
+<label>Шрифт</label>
+
+<select id="fontSelect">
+
+<option value="system-ui">iPhone</option>
+<option value="Arial">Arial</option>
+<option value="monospace">Monospace</option>
+
+</select>
+
+<label>Тема</label>
+
+<button onclick="toggleTheme()">Сменить тему</button>
+
+</div>
+
+</section>
+
+
 <script src="script.js"></script>
 
 </body>
+
 </html>
+
