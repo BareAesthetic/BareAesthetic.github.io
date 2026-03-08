@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Темы (цикл из 3)
+  // Темы
   const toggle = document.getElementById('theme-switch');
   toggle.addEventListener('change', () => {
     document.body.classList.remove(...themes);
@@ -26,35 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
     label.querySelector('.aero').style.opacity = currentTheme === 2 ? 1 : 0;
   });
 
-  // Профиль + ник FANFANCIK → Админ
-  const form = document.getElementById('auth-form');
-  const nickInput = document.getElementById('nickname');
-  const status = document.getElementById('status');
-  const avatarInput = document.getElementById('avatar-input');
-  const avatarPreview = document.getElementById('avatar-preview');
-
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const nick = nickInput.value.trim();
-
-    if (nick.toLowerCase() === 'fanfancik') {
-      status.innerHTML = '👑 FANFANCIK — Админ / Главный';
-      status.style.color = '#fbbf24';
-    } else {
-      status.textContent = 'Вход выполнен!';
-    }
-  });
-
-  avatarInput.addEventListener('change', e => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = ev => avatarPreview.src = ev.target.result;
-      reader.readAsDataURL(file);
-    }
-  });
-
-  // Фейерверки / ракеты
+  // Фейерверки
   const canvas = document.getElementById('fireworks-canvas');
   const ctx = canvas.getContext('2d');
   let w, h;
