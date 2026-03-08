@@ -1,74 +1,82 @@
-* { margin:0; padding:0; box-sizing:border-box; }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 body {
-  font-family: "SF Pro Display", "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><circle cx="16" cy="16" r="10" fill="rgba(100,200,255,0.4)" stroke="rgba(100,200,255,0.8)" stroke-width="3"/></svg>'), auto;
-  transition: background 0.8s ease, color 0.8s ease;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="rgba(120,220,255,0.35)" stroke="rgba(120,220,255,0.9)" stroke-width="2.5"/></svg>'), auto;
+  transition: background 1s ease, color 0.8s ease;
 }
 
 body.theme-light {
-  background: linear-gradient(135deg, #d1e8ff, #e0f7ff, #f0faff);
+  background: linear-gradient(135deg, #c5e4ff, #e0f7ff, #f0fbff);
   color: #0f172a;
 }
 
 body.theme-dark {
-  background: linear-gradient(135deg, #0f172a, #1e293b, #111827);
-  color: #e2e8f0;
+  background: linear-gradient(135deg, #0b132b, #1c2526, #0f172a);
+  color: #d1d5db;
 }
 
 body.theme-aero {
-  background: linear-gradient(135deg, #a1c4fd, #c2e9fb, #e0f7fa);
+  background: linear-gradient(135deg, #89cff0, #b3e5fc, #d1f2ff);
   color: #1e293b;
 }
 
-.liquid-bg {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 30% 20%, rgba(100,200,255,0.18), transparent 60%),
-              radial-gradient(circle at 70% 80%, rgba(255,180,100,0.14), transparent 70%);
-  pointer-events: none;
-  z-index: -2;
-}
-
-/* Кометы и звёзды */
-#stars-canvas {
+/* Космический фон с кометами и звёздами */
+#cosmic-canvas {
   position: fixed;
   inset: 0;
-  z-index: -1;
+  z-index: -2;
   pointer-events: none;
 }
 
-/* Навбар — теперь полностью фиксированный и не съезжает */
+/* Liquid Glass — ультра красиво */
+.liquid-nav, .liquid-card, .section.active, .profile-form, .faq-item {
+  background: linear-gradient(135deg, rgba(255,255,255,0.18), rgba(140,220,255,0.12), rgba(255,255,255,0.16));
+  border: 1px solid rgba(180,240,255,0.28);
+  border-radius: 36px;
+  box-shadow: 
+    0 20px 80px rgba(0,0,0,0.45),
+    inset 0 10px 50px rgba(255,255,255,0.20),
+    inset 0 -10px 40px rgba(0,0,0,0.18);
+  backdrop-filter: blur(12px) saturate(240%);
+  transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.liquid-nav:hover, .liquid-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 35px 100px rgba(0,0,0,0.55), inset 0 14px 60px rgba(255,255,255,0.25);
+}
+
+/* Навбар — стабильный, красивый */
 .liquid-nav {
   position: fixed;
-  top: 16px;
+  top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 14px 40px;
+  padding: 16px 48px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 60px;
-  max-width: 94%;
+  width: 92%;
+  max-width: 1400px;
   z-index: 1000;
-  border-radius: 44px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.25), rgba(180,220,255,0.18));
-  border: 1px solid rgba(255,255,255,0.32);
-  box-shadow: 0 20px 70px rgba(0,0,0,0.4), inset 0 10px 40px rgba(255,255,255,0.22);
-  backdrop-filter: blur(10px) saturate(220%);
-  transition: all 0.4s ease;
 }
 
+/* Логотип */
 .logo {
   display: flex;
   align-items: center;
-  font-size: 1.9rem;
+  font-size: 2rem;
   font-weight: 700;
-  gap: 12px;
-  background: linear-gradient(90deg, #60a5fa, #a78bfa, #c084fc);
+  letter-spacing: -0.5px;
+  background: linear-gradient(90deg, #7dd3fc, #c084fc, #f472b6);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -76,41 +84,45 @@ body.theme-aero {
 }
 
 .logo-drop {
-  font-size: 2.4rem;
-  animation: drip-slow 5s infinite ease-in-out;
+  font-size: 2.6rem;
+  margin-right: 10px;
+  animation: floatGlow 6s infinite ease-in-out;
 }
 
-@keyframes drip-slow {
-  0%,100% { transform: translateY(0) rotate(0deg); }
-  50%     { transform: translateY(10px) rotate(5deg); }
+@keyframes floatGlow {
+  0%,100% { transform: translateY(0) scale(1); opacity: 0.9; }
+  50%     { transform: translateY(-8px) scale(1.08); opacity: 1; }
 }
 
+/* Вкладки */
 ul {
   list-style: none;
   display: flex;
-  gap: 20px;
+  gap: 12px;
   margin: 0;
 }
 
 .tab {
   color: inherit;
   text-decoration: none;
-  padding: 12px 26px;
+  padding: 12px 28px;
   border-radius: 999px;
   font-weight: 500;
-  transition: all 0.5s;
+  font-size: 1.05rem;
+  transition: all 0.5s ease;
 }
 
 .tab.active {
-  background: linear-gradient(90deg, rgba(96,165,250,0.4), rgba(167,139,250,0.32));
-  box-shadow: 0 0 35px rgba(96,165,250,0.7);
+  background: linear-gradient(90deg, rgba(125,211,252,0.45), rgba(192,132,252,0.38));
+  box-shadow: 0 0 40px rgba(125,211,252,0.7);
+  color: white;
 }
 
-/* Переключатель тем — центрирован и стабилен */
+/* Переключатель тем — центрированный и красивый */
 .theme-toggle {
+  width: 90px;
+  height: 42px;
   position: relative;
-  width: 80px;
-  height: 40px;
 }
 
 #theme-switch { display: none; }
@@ -118,78 +130,117 @@ ul {
 .toggle-label {
   position: absolute;
   inset: 0;
-  background: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.18);
   border-radius: 999px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  padding: 0 14px;
+  justify-content: center;
+  gap: 28px;
   cursor: pointer;
-  transition: background 0.5s;
+  transition: all 0.5s;
 }
 
-.sun, .moon, .aero {
+.icon {
   font-size: 24px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position: absolute;
 }
 
-.sun { left: 12px; }
-.moon { left: 28px; opacity: 0; }
-.aero { left: 44px; opacity: 0; }
+.sun { left: 14px; }
+.moon { left: 43px; opacity: 0; }
+.aero { left: 72px; opacity: 0; }
 
-#theme-switch:checked + .toggle-label .sun { opacity: 0; left: -20px; }
-#theme-switch:checked + .toggle-label .moon { opacity: 1; left: 28px; }
-#theme-switch:checked + .toggle-label .aero { opacity: 0; left: 76px; }
+/* Секции */
+main { padding: 160px 20px 120px; max-width: 1280px; margin: 0 auto; }
 
-/* Остальные стили (секции, визуалы и т.д.) остаются как в предыдущей версии */
-main { padding: 140px 20px 100px; max-width: 1200px; margin: 0 auto; }
-
-.section { display: none; opacity: 0; transform: translateY(40px); transition: all 0.8s ease; }
+.section { display: none; opacity: 0; transform: translateY(50px); transition: all 1s cubic-bezier(0.22, 1, 0.36, 1); }
 .section.active { display: block; opacity: 1; transform: translateY(0); }
 
-h1 { font-size: 4.8rem; line-height: 1; margin-bottom: 16px; text-align: center; }
-h2 { font-size: 3rem; margin-bottom: 40px; opacity: 0.92; text-align: center; }
-p  { font-size: 1.55rem; line-height: 1.7; text-align: center; max-width: 900px; margin: 0 auto 50px; }
+h1 { font-size: 5.2rem; font-weight: 700; letter-spacing: -1px; text-align: center; margin-bottom: 16px; background: linear-gradient(90deg, #a5b4fc, #c084fc, #f472b6); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+h2 { font-size: 3.2rem; opacity: 0.9; text-align: center; margin-bottom: 48px; }
 
+p { font-size: 1.6rem; line-height: 1.8; text-align: center; max-width: 920px; margin: 0 auto 60px; opacity: 0.92; }
+
+/* Визуалы — красиво и атмосферно */
 .visuals-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 28px;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 32px;
   margin-top: 60px;
 }
 
 .visual-card {
-  padding: 32px 24px;
+  padding: 40px 32px;
   text-align: center;
-  border-radius: 32px;
+  border-radius: 40px;
+  min-height: 260px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.visual-card h3 { font-size: 1.6rem; margin-bottom: 12px; }
-.visual-card p { font-size: 1.15rem; opacity: 0.9; }
+.visual-card h3 {
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+  background: linear-gradient(90deg, #a5b4fc, #c084fc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
-.sad-text { font-size: 2.8rem; font-weight: 600; color: #ff6b6b; margin: 40px 0; }
+.visual-card p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
 
-.faq-item { max-width: 800px; margin: 24px auto; padding: 28px; text-align: left; }
+/* Остальное */
+.sad-text {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #fda4af;
+  margin: 60px 0 20px;
+  text-align: center;
+}
 
-.profile-form { max-width: 480px; margin: 60px auto; padding: 52px 40px; }
+.faq-item {
+  max-width: 900px;
+  margin: 32px auto;
+  padding: 32px;
+  text-align: left;
+  border-radius: 36px;
+}
+
+.profile-form {
+  max-width: 520px;
+  margin: 80px auto;
+  padding: 60px 48px;
+  border-radius: 48px;
+}
 
 input, button {
   width: 100%;
-  padding: 18px;
-  margin: 16px 0;
+  padding: 20px;
+  margin: 20px 0;
   border: none;
-  border-radius: 24px;
-  font-size: 1.15rem;
+  border-radius: 28px;
+  font-size: 1.2rem;
 }
 
-input { background: rgba(255,255,255,0.14); color: inherit; }
+input {
+  background: rgba(255,255,255,0.16);
+  color: inherit;
+  backdrop-filter: blur(8px);
+}
+
 button {
-  background: linear-gradient(90deg, #f59e0b, #ea580c);
+  background: linear-gradient(90deg, #f472b6, #c084fc, #a5b4fc);
   color: white;
   font-weight: 600;
   cursor: pointer;
+  transition: all 0.4s;
 }
 
+button:hover {
+  transform: scale(1.04);
+  box-shadow: 0 0 40px rgba(196,132,252,0.6);
+}
