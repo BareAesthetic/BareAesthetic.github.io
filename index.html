@@ -1,175 +1,123 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>BareAesthetic</title>
 
 <link rel="stylesheet" href="style.css">
 
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
 </head>
 
 <body>
 
-<div class="bg"></div>
+<div class="cursor"></div>
 
-<header class="navbar">
+<header>
 
-<div class="logo">BA</div>
+<div class="logo">BareAesthetic</div>
 
-<nav class="nav">
+<nav>
 
-<div class="nav-slider"></div>
-
-<button class="nav-btn active" data-tab="home">Главная</button>
-<button class="nav-btn" data-tab="visuals">Визуалы</button>
-<button class="nav-btn" data-tab="cabinet">Кабинет</button>
-<button class="nav-btn" data-tab="settings">Настройки</button>
+<a onclick="openPage('home')">Главная</a>
+<a onclick="openPage('shop')">Покупки</a>
+<a onclick="openPage('profile')">Профиль</a>
 
 </nav>
 
-<div class="theme-toggle" onclick="toggleTheme()">
-☀️
-</div>
+<div class="theme-toggle" onclick="toggleTheme()">🌗</div>
 
 </header>
 
-<main>
 
-<!-- HERO -->
+<!-- ГЛАВНАЯ -->
 
-<section id="home" class="tab active hero">
+<section id="home" class="page active">
 
-<h1 class="gradient-text">
-
-BareAesthetic
-
+<h1 class="title">
+BareAesthetic — 
+<span id="changingText">Красивый HUD</span>
 </h1>
 
 <p class="subtitle">
-
-Лучшие визуалы для Minecraft 1.16.5
-
+Мод для Minecraft 1.16.5 с лучшими визуалами
 </p>
 
-</section>
 
-<!-- FEATURES -->
+<section class="advantages fade">
 
-<section class="features">
+<h2>Наши преимущества</h2>
 
-<h2>Почему выбирают наш продукт</h2>
-
-<div class="cards">
+<div class="grid">
 
 <div class="card">
-<h3>🔥 Красивые визуалы</h3>
-<p>Современные эффекты игроков</p>
+<h3>👁 Красивый внешний вид</h3>
+<p>Большое количество визуальных функций.</p>
 </div>
 
 <div class="card">
-<h3>⚡ Высокий FPS</h3>
-<p>Никаких лагов</p>
+<h3>⚡ Оптимизация</h3>
+<p>Работает плавно даже на слабых ПК.</p>
 </div>
 
 <div class="card">
-<h3>🧊 Liquid стиль</h3>
-<p>Уникальный дизайн</p>
+<h3>🎨 Кастомизация</h3>
+<p>Настраивай HUD как хочешь.</p>
+</div>
+
+<div class="card">
+<h3>🔒 Безопасность</h3>
+<p>Клиент не содержит вредоносного кода.</p>
 </div>
 
 </div>
 
 </section>
 
-<!-- VISUALS -->
+</section>
 
-<section id="visuals" class="tab">
 
-<h2>Лучшие визуалы</h2>
+<!-- ПОКУПКИ -->
 
-<div class="visual-grid">
+<section id="shop" class="page">
 
-<div class="visual-card">
+<div class="card big">
 
-<img src="images/visual1.png">
+<h2>Покупки</h2>
 
-<h3>Glass ESP</h3>
-
-</div>
-
-<div class="visual-card">
-
-<img src="images/visual2.png">
-
-<h3>Liquid Glow</h3>
-
-</div>
-
-<div class="visual-card">
-
-<img src="images/visual3.png">
-
-<h3>Chrome Armor</h3>
-
-</div>
+<p>Покупки пока что недоступны :(</p>
 
 </div>
 
 </section>
 
-<!-- CABINET -->
 
-<section id="cabinet" class="tab">
+<!-- ПРОФИЛЬ -->
 
-<h2>Личный кабинет</h2>
+<section id="profile" class="page">
 
-<div class="cabinet">
+<div class="profile-card">
 
-<div class="profile-box">
+<img id="avatar" src="https://i.imgur.com/2DhmtJ4.png">
 
-<img src="images/avatar.png" class="avatar">
+<input type="file" id="upload">
 
-<div>
+<h2 id="username">Гость</h2>
 
-<label>Никнейм</label>
-<input type="text" value="Player">
-
-<label>Email</label>
-<input type="text" value="example@gmail.com">
-
+<div id="g_id_onload"
+data-client_id="YOUR_GOOGLE_CLIENT_ID"
+data-callback="handleCredentialResponse">
 </div>
 
-</div>
-
-<div class="account-info">
-
-<p>ID: 140882</p>
-<p>Группа: Пользователь</p>
-<p>Бан: Нет</p>
-
-</div>
+<div class="g_id_signin"></div>
 
 </div>
 
 </section>
 
-<!-- SETTINGS -->
-
-<section id="settings" class="tab">
-
-<h2>Настройки</h2>
-
-<label>Цвет текста</label>
-<input type="color" id="textColor">
-
-<label>Цвет фона</label>
-<input type="color" id="bgColor">
-
-</section>
-
-</main>
 
 <script src="script.js"></script>
 
