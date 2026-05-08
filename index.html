@@ -1,103 +1,255 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>BareAesthetic</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BareAesthetic — Играй с умом</title>
+ 
+  <!-- Подключаем шрифты Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;900&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet" />
+ 
+  <!-- Подключаем наш CSS файл -->
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-
-<canvas id="sakura"></canvas>
-
-<header>
-
-<div class="logo">
-BareAesthetic
-<div class="underline"></div>
-</div>
-
-<nav>
-
-<a onclick="openPage('home')">Главная</a>
-<a onclick="openPage('shop')">Покупки</a>
-<a onclick="openPage('profile')">Профиль</a>
-
-<button class="theme" onclick="toggleTheme()">🌗</button>
-
-</nav>
-
-</header>
-
-
-<section id="home" class="page active">
-
-<h1 class="title">
-
-BareAesthetic
-
-<span id="changingText">Лучшие визуалы</span>
-
-</h1>
-
-<p class="subtitle">
-
-Лучший визуальный мод для Minecraft 1.16.5
-
-</p>
-
-
-<div class="cards">
-
-<div class="card">
-<h3>🌸 Красивый HUD</h3>
-<p>Минималистичный интерфейс.</p>
-</div>
-
-<div class="card">
-<h3>⚡ Плавные анимации</h3>
-<p>Работает идеально.</p>
-</div>
-
-<div class="card">
-<h3>🎮 Minecraft стиль</h3>
-<p>Атмосфера Sakura.</p>
-</div>
-
-</div>
-
-</section>
-
-
-<section id="shop" class="page">
-
-<div class="center">
-<h2>Покупки</h2>
-<p>Покупки пока недоступны :(</p>
-</div>
-
-</section>
-
-
-<section id="profile" class="page">
-
-<div class="center">
-<h2>Профиль</h2>
-<p>Скоро появится</p>
-</div>
-
-</section>
-
-
-<script src="script.js"></script>
-
+ 
+  <!-- ===================== НАВБАР ===================== -->
+  <!-- Верхняя панель навигации с Liquid Glass эффектом -->
+  <nav class="navbar glass" id="navbar">
+    <div class="nav-container">
+ 
+      <!-- Логотип -->
+      <div class="nav-logo">
+        <span class="logo-icon">🌸</span>
+        <span class="logo-text">BareAesthetic</span>
+      </div>
+ 
+      <!-- Пункты меню -->
+      <ul class="nav-links">
+        <li><a href="#home">Главная</a></li>
+        <li><a href="#products">Продукты</a></li>
+        <li><a href="#shop">Магазин</a></li>
+        <li><a href="#faq">Частые вопросы</a></li>
+      </ul>
+ 
+      <!-- Правая часть навбара: переключатель темы + кнопка входа -->
+      <div class="nav-right">
+        <!-- Переключатель тёмной/светлой темы -->
+        <button class="theme-toggle glass" id="themeToggle" title="Сменить тему">
+          <span class="theme-icon" id="themeIcon">🌙</span>
+        </button>
+ 
+        <!-- Кнопка личного кабинета -->
+        <button class="btn-login glass-btn" id="loginBtn">Личный кабинет</button>
+      </div>
+ 
+      <!-- Бургер для мобильных устройств -->
+      <button class="burger" id="burger">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+ 
+  <!-- ===================== HERO — ГЛАВНЫЙ ЭКРАН ===================== -->
+  <section class="hero" id="home">
+    <!-- Анимированные сакурные частицы (создаются в JS) -->
+    <div class="sakura-particles" id="particles"></div>
+ 
+    <!-- Фоновый градиент -->
+    <div class="hero-bg"></div>
+ 
+    <!-- Контент hero секции -->
+    <div class="hero-content">
+      <div class="hero-badge glass">🌸 Minecraft клиент нового поколения</div>
+      <h1 class="hero-title">
+        Командуй игрой.<br />
+        <span class="accent">Играй с Dynamic FPS.</span>
+      </h1>
+      <p class="hero-sub">
+        Мод, созданный для тех, кто играет осознанно.<br />
+        Контроль, информация и скорость — в одном месте.
+      </p>
+      <div class="hero-btns">
+        <a href="#shop" class="btn-primary glass-btn">🛒 Купить клиент</a>
+        <a href="#faq" class="btn-secondary glass">Частые вопросы</a>
+      </div>
+    </div>
+ 
+    <!-- Плавающие декоративные карточки -->
+    <div class="hero-cards">
+      <div class="float-card glass card-1">⚡ Быстрый</div>
+      <div class="float-card glass card-2">🛡️ Надёжный</div>
+      <div class="float-card glass card-3">🎨 Красивый</div>
+    </div>
+  </section>
+ 
+  <!-- ===================== ПРОДУКТЫ / ФИЧИ ===================== -->
+  <section class="section" id="products">
+    <div class="container">
+      <div class="section-label glass">Продукты</div>
+      <h2 class="section-title">Ощущается так же,<br /><span class="accent">как и выглядит</span></h2>
+      <p class="section-sub">Дизайн, который ощущается естественным. Ведь комфорт — это не только про интерфейс.</p>
+ 
+      <!-- Сетка карточек фич -->
+      <div class="features-grid">
+ 
+        <div class="feature-card glass">
+          <div class="feature-icon">🎮</div>
+          <h3>Combat модуль</h3>
+          <p>Умный бой с настраиваемым KillAura, Reach и множеством параметров под каждый сервер.</p>
+        </div>
+ 
+        <div class="feature-card glass featured-card">
+          <div class="feature-icon">🌸</div>
+          <h3>Кастомный интерфейс</h3>
+          <p>Все элементы HUD можно переставить, покрасить и настроить под себя. Liquid Glass тема включена.</p>
+          <div class="featured-badge">Популярное</div>
+        </div>
+ 
+        <div class="feature-card glass">
+          <div class="feature-icon">📡</div>
+          <h3>Events трекер</h3>
+          <p>Cooldowns, события, таймеры — всё в одном месте. Никогда не пропустишь важный момент.</p>
+        </div>
+ 
+        <div class="feature-card glass">
+          <div class="feature-icon">⚙️</div>
+          <h3>Cloud Config</h3>
+          <p>Сохраняй и загружай конфиги из облака. Твои настройки доступны с любого устройства.</p>
+        </div>
+ 
+        <div class="feature-card glass">
+          <div class="feature-icon">🎨</div>
+          <h3>Color Themes</h3>
+          <p>Встроенные темы: ReallyWorld, HolyWorld, SpookyTime и другие. Или создай свою.</p>
+        </div>
+ 
+        <div class="feature-card glass">
+          <div class="feature-icon">🔄</div>
+          <h3>Частые обновления</h3>
+          <p>Мы обновляем мод регулярно, добавляя новые модули и исправления по запросам игроков.</p>
+        </div>
+ 
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ===================== МАГАЗИН ===================== -->
+  <section class="section" id="shop">
+    <div class="container">
+      <div class="section-label glass">Магазин</div>
+      <h2 class="section-title">Получи доступ к <span class="accent">Wexside</span></h2>
+ 
+      <!-- Блок недоступности покупок -->
+      <div class="shop-unavailable glass">
+        <div class="unavail-icon">🔒</div>
+        <h3>Покупки пока недоступны</h3>
+        <p>Магазин временно закрыт. Мы работаем над новой системой оплаты и скоро откроем продажи.<br />Оставь свой email — мы уведомим тебя первым.</p>
+ 
+        <!-- Форма подписки на уведомление -->
+        <div class="notify-form">
+          <input
+            type="email"
+            class="glass-input"
+            placeholder="твой@email.com"
+            id="notifyEmail"
+          />
+          <button class="btn-primary glass-btn" onclick="handleNotify()">Уведомить меня</button>
+        </div>
+        <p class="notify-success" id="notifySuccess">✅ Готово! Мы сообщим, когда откроется.</p>
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ===================== FAQ ===================== -->
+  <section class="section" id="faq">
+    <div class="container">
+      <div class="section-label glass">FAQ</div>
+      <h2 class="section-title">Частые <span class="accent">вопросы</span></h2>
+ 
+      <div class="faq-list">
+ 
+        <div class="faq-item glass">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Какие ОС поддерживаются?
+            <span class="faq-arrow">+</span>
+          </button>
+          <div class="faq-a">
+            Клиент работает на 64‑битных версиях Windows 10 и Windows 11.
+          </div>
+        </div>
+ 
+        <div class="faq-item glass">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Как часто выходят обновления?
+            <span class="faq-arrow">+</span>
+          </button>
+          <div class="faq-a">
+            Обновления выходят регулярно — обычно раз в 1–2 недели. Приоритет — желания пользователей.
+          </div>
+        </div>
+ 
+        <div class="faq-item glass">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Возможен ли возврат?
+            <span class="faq-arrow">+</span>
+          </button>
+          <div class="faq-a">
+            Да, в течение 3 дней с момента покупки при отсутствии использования аккаунта.
+          </div>
+        </div>
+ 
+        <div class="faq-item glass">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Безопасен ли клиент?
+            <span class="faq-arrow">+</span>
+          </button>
+          <div class="faq-a">
+            BareAesthetic не содержит вирусов и вредоносного ПО. Все файлы проходят проверку перед релизом.
+          </div>
+        </div>
+ 
+      </div>
+    </div>
+  </section>
+ 
+  <!-- ===================== ФУТЕР ===================== -->
+  <footer class="footer glass">
+    <div class="container footer-inner">
+      <div class="footer-logo">
+        <span class="logo-icon">🌸</span>
+        <span class="logo-text">BareAesthetic</span>
+      </div>
+      <p class="footer-copy">© 2025 BareAesthetic. Все права защищены.</p>
+      <div class="footer-links">
+        <a href="#home">Главная</a>
+        <a href="#shop">Магазин</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </div>
+  </footer>
+ 
+  <!-- ===================== МОДАЛЬНОЕ ОКНО ВХОДА ===================== -->
+  <!-- Появляется при клике на «Личный кабинет» -->
+  <div class="modal-overlay" id="modalOverlay" onclick="closeModal(event)">
+    <div class="modal glass" id="loginModal">
+      <button class="modal-close" onclick="closeLoginModal()">✕</button>
+      <div class="modal-logo">🌸</div>
+      <h2 class="modal-title">Войти в аккаунт</h2>
+      <p class="modal-sub">Введи данные своего аккаунта</p>
+ 
+      <div class="modal-form">
+        <input type="text" class="glass-input" placeholder="Логин или email" id="loginUsername" />
+        <input type="password" class="glass-input" placeholder="Пароль" id="loginPassword" />
+        <button class="btn-primary glass-btn full-width" onclick="handleLogin()">Войти</button>
+        <p class="modal-hint">Нет аккаунта? <a href="#shop">Купи клиент</a> и получи доступ.</p>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- ===================== Подключаем наш JS ===================== -->
+  <script src="script.js"></script>
 </body>
 </html>
 
