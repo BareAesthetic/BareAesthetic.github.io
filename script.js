@@ -1,291 +1,302 @@
-/* ============================================================
-   script.js — BareAesthetic сайт
-   Содержит:
-   1. Переключатель тёмной/светлой темы (плавно, с анимацией)
-   2. Модальное окно входа
-   3. FAQ аккордеон
-   4. Анимация появления карточек при скролле
-   5. Сакурные лепестки (частицы)
-   6. Навбар: скролл-эффект + мобильный бургер
-   7. Форма уведомления в магазине
-   ============================================================ */
+/* ═══════════════════════════════════════
+   BareAesthetic — script.js
+   Sakura petals · Clock · Scroll · FAQ
+═══════════════════════════════════════ */
  
-/* ===================== 1. ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ =====================
-   При клике меняем data-theme на <html> теге.
-   CSS переменные автоматически пересчитываются.
-*/
+/* ──────────────────────────────
+   1. SAKURA PETALS CANVAS
+────────────────────────────── */
+(function initPetals() {
+  const canvas = document.getElementById('petals');
+  const ctx    = canvas.getContext('2d');
+  let W, H, petals = [];
  
-// Получаем сохранённую тему из localStorage (чтобы помнить выбор пользователя)
-const savedTheme = localStorage.getItem('theme') || 'dark';
-document.documentElement.setAttribute('data-theme', savedTheme);
-updateThemeIcon(savedTheme);
- 
-// Кнопка переключения темы
-const themeToggle = document.getElementById('themeToggle');
-const themeIcon   = document.getElementById('themeIcon');
- 
-themeToggle.addEventListener('click', () => {
-  // Определяем текущую тему и переключаем на противоположную
-  const current = document.documentElement.getAttribute('data-theme');
-  const next    = current === 'dark' ? 'light' : 'dark';
- 
-  // Применяем анимацию «вспышки» при переключении
-  document.body.style.transition = 'background 0.5s, color 0.5s';
- 
-  // Меняем тему на html теге — CSS переменные обновятся автоматически
-  document.documentElement.setAttribute('data-theme', next);
- 
-  // Сохраняем выбор в localStorage
-  localStorage.setItem('theme', next);
- 
-  // Обновляем иконку кнопки
-  updateThemeIcon(next);
- 
-  // Небольшая анимация самой кнопки
-  themeToggle.style.transform = 'rotate(180deg) scale(1.15)';
-  setTimeout(() => {
-    themeToggle.style.transform = '';
-  }, 350);
-});
- 
-// Функция обновления иконки в зависимости от темы
-function updateThemeIcon(theme) {
-  themeIcon.textContent = theme === 'dark' ? '🌙' : '☀️';
-}
- 
- 
-/* ===================== 2. МОДАЛЬНОЕ ОКНО ВХОДА ===================== */
- 
-const loginBtn     = document.getElementById('loginBtn');
-const modalOverlay = document.getElementById('modalOverlay');
- 
-// Открываем модалку при клике на «Личный кабинет»
-loginBtn.addEventListener('click', () => {
-  modalOverlay.classList.add('open');
-  document.body.style.overflow = 'hidden'; // Блокируем прокрутку страницы
-});
- 
-// Закрываем модалку при клике на фон (оверлей)
-function closeModal(event) {
-  // Закрываем только если клик именно по оверлею, а не по самой модалке
-  if (event.target === modalOverlay) {
-    closeLoginModal();
+  function resize() {
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
   }
-}
+  window.addEventListener('resize', resize);
+  resize();
  
-// Закрыть модалку (вызывается из кнопки ✕ и при клике на фон)
-function closeLoginModal() {
-  modalOverlay.classList.remove('open');
-  document.body.style.overflow = ''; // Возвращаем прокрутку
-}
- 
-// Закрытие модалки по клавише Escape
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape' && modalOverlay.classList.contains('open')) {
-    closeLoginModal();
-  }
-});
- 
-// Обработка кнопки «Войти»
-function handleLogin() {
-  const username = document.getElementById('loginUsername').value.trim();
-  const password = document.getElementById('loginPassword').value.trim();
- 
-  if (!username || !password) {
-    // Подсвечиваем пустые поля розовым
-    if (!username) shakeInput('loginUsername');
-    if (!password) shakeInput('loginPassword');
-    return;
+  function isDark() {
+    return document.documentElement.getAttribute('data-theme') !== 'light';
   }
  
-  // Здесь в будущем будет запрос к API.
-  // Пока показываем сообщение (замени на настоящую авторизацию).
-  alert('Вход: функция будет доступна после запуска магазина 🌸');
-}
+  /* Draw a small sakura petal shape */
+  function drawPetal(ctx, x, y, size, angle, alpha) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.translate(x, y);
+    ctx.rotate(angle);
  
-// Анимация «тряски» для пустых полей
-function shakeInput(id) {
-  const el = document.getElementById(id);
-  el.style.borderColor = '#ff6b9d';
-  el.style.animation = 'shake 0.4s ease';
-  setTimeout(() => {
-    el.style.animation = '';
-    el.style.borderColor = '';
-  }, 400);
-}
+    const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, size);
+    if (isDark()) {
+      gradient.addColorStop(0,   'rgba(255, 182, 193, 0.95)');
+      gradient.addColorStop(0.6, 'rgba(255, 126, 179, 0.7)');
+      gradient.addColorStop(1,   'rgba(232,  72, 138, 0.0)');
+    } else {
+      gradient.addColorStop(0,   'rgba(255, 130, 170, 0.95)');
+      gradient.addColorStop(0.6, 'rgba(220,  80, 130, 0.7)');
+      gradient.addColorStop(1,   'rgba(200,  60, 110, 0.0)');
+    }
  
-// Анимация тряски в CSS (добавляем через JS)
-const shakeStyle = document.createElement('style');
-shakeStyle.textContent = `
-  @keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    20%       { transform: translateX(-6px); }
-    40%       { transform: translateX(6px); }
-    60%       { transform: translateX(-4px); }
-    80%       { transform: translateX(4px); }
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    // heart-like petal shape
+    ctx.moveTo(0, -size * 0.6);
+    ctx.bezierCurveTo( size * 0.9,  -size * 0.9,  size * 1.2,  size * 0.3,  0,  size);
+    ctx.bezierCurveTo(-size * 1.2,  size * 0.3, -size * 0.9,  -size * 0.9,  0, -size * 0.6);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
   }
-`;
-document.head.appendChild(shakeStyle);
  
- 
-/* ===================== 3. FAQ АККОРДЕОН =====================
-   toggleFaq вызывается из onclick атрибута в HTML.
-*/
-function toggleFaq(btn) {
-  // Находим родительский .faq-item
-  const item = btn.closest('.faq-item');
-  const isOpen = item.classList.contains('open');
- 
-  // Закрываем все открытые FAQ
-  document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('open'));
- 
-  // Если кликнутый был закрыт — открываем его
-  if (!isOpen) {
-    item.classList.add('open');
+  function randomPetal() {
+    return {
+      x:      Math.random() * W,
+      y:      -20 - Math.random() * H * 0.3,
+      size:   4 + Math.random() * 7,
+      speedY: 0.6 + Math.random() * 1.2,
+      speedX: (Math.random() - 0.5) * 0.8,
+      angle:  Math.random() * Math.PI * 2,
+      spin:   (Math.random() - 0.5) * 0.02,
+      sway:   Math.random() * Math.PI * 2,
+      swaySpeed: 0.008 + Math.random() * 0.012,
+      swayAmp:   20 + Math.random() * 30,
+      alpha:  0.4 + Math.random() * 0.55,
+    };
   }
-}
+ 
+  // spawn initial petals spread across screen
+  for (let i = 0; i < 55; i++) {
+    const p = randomPetal();
+    p.y = Math.random() * H; // pre-distribute
+    petals.push(p);
+  }
+ 
+  function tick() {
+    ctx.clearRect(0, 0, W, H);
+ 
+    // spawn new petal occasionally
+    if (petals.length < 60 && Math.random() < 0.03) {
+      petals.push(randomPetal());
+    }
+ 
+    petals = petals.filter(p => {
+      p.y    += p.speedY;
+      p.sway += p.swaySpeed;
+      p.x    += p.speedX + Math.sin(p.sway) * 0.6;
+      p.angle += p.spin;
+ 
+      drawPetal(ctx, p.x, p.y, p.size, p.angle, p.alpha);
+ 
+      return p.y < H + 30 && p.x > -50 && p.x < W + 50;
+    });
+ 
+    requestAnimationFrame(tick);
+  }
+  tick();
+})();
  
  
-/* ===================== 4. АНИМАЦИЯ КАРТОЧЕК ПРИ СКРОЛЛЕ =====================
-   Используем Intersection Observer API для отслеживания
-   видимости элементов и добавления класса .visible
-*/
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry, i) => {
+/* ──────────────────────────────
+   2. LIVE CLOCK
+────────────────────────────── */
+(function initClock() {
+  const hoursEl   = document.getElementById('clock-hours');
+  const minutesEl = document.getElementById('clock-minutes');
+  const secondsEl = document.getElementById('clock-seconds');
+  const dateEl    = document.getElementById('clock-date');
+ 
+  const DAYS = ['Воскресенье','Понедельник','Вторник','Среда','Четверг','Пятница','Суббота'];
+  const MONTHS = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+ 
+  function pad(n) { return String(n).padStart(2, '0'); }
+ 
+  function updateClock() {
+    const now = new Date();
+    hoursEl.textContent   = pad(now.getHours());
+    minutesEl.textContent = pad(now.getMinutes());
+    secondsEl.textContent = pad(now.getSeconds());
+    dateEl.textContent    = `${DAYS[now.getDay()]}, ${now.getDate()} ${MONTHS[now.getMonth()]}`;
+  }
+ 
+  updateClock();
+  setInterval(updateClock, 1000);
+})();
+ 
+ 
+/* ──────────────────────────────
+   3. THEME TOGGLE
+────────────────────────────── */
+(function initTheme() {
+  const btn  = document.getElementById('themeToggle');
+  const html = document.documentElement;
+ 
+  // persist preference
+  const saved = localStorage.getItem('ba-theme');
+  if (saved) html.setAttribute('data-theme', saved);
+ 
+  function update() {
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    btn.textContent = isDark ? '☾' : '☀';
+  }
+  update();
+ 
+  btn.addEventListener('click', () => {
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    localStorage.setItem('ba-theme', isDark ? 'light' : 'dark');
+    update();
+  });
+})();
+ 
+ 
+/* ──────────────────────────────
+   4. NAVBAR SCROLL EFFECT
+────────────────────────────── */
+(function initNavbar() {
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+})();
+ 
+ 
+/* ──────────────────────────────
+   5. SCROLL REVEAL (IntersectionObserver)
+────────────────────────────── */
+(function initReveal() {
+  const els = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
       if (entry.isIntersecting) {
-        // Небольшая задержка для каждой карточки — эффект стаггера
-        setTimeout(() => {
-          entry.target.classList.add('visible');
-        }, i * 80);
-        observer.unobserve(entry.target); // Анимируем только один раз
+        entry.target.classList.add('visible');
       }
     });
-  },
-  {
-    threshold: 0.1,     // Срабатываем когда 10% элемента видно
-    rootMargin: '0px 0px -40px 0px'
+  }, { threshold: 0.12 });
+ 
+  els.forEach(el => obs.observe(el));
+})();
+ 
+ 
+/* ──────────────────────────────
+   6. METRICS BARS ANIMATION
+────────────────────────────── */
+(function initMetrics() {
+  const section  = document.getElementById('metricsSection');
+  if (!section) return;
+ 
+  let animated = false;
+ 
+  function animateBars() {
+    if (animated) return;
+    animated = true;
+ 
+    /* Animate bar fills */
+    document.querySelectorAll('.metric-bar-fill').forEach(bar => {
+      const value = parseInt(bar.dataset.value, 10);
+      // small delay so observer fires first, then smooth fill
+      setTimeout(() => {
+        bar.style.width = value + '%';
+      }, 100);
+    });
+ 
+    /* Animate score counters */
+    document.querySelectorAll('.animated-score').forEach(el => {
+      const target = parseInt(el.dataset.target, 10);
+      const duration = 1500; // ms
+      const start = performance.now();
+ 
+      function step(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        // ease-out cubic
+        const ease = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(ease * target);
+        el.textContent = current + '/100';
+        if (progress < 1) requestAnimationFrame(step);
+      }
+ 
+      setTimeout(() => requestAnimationFrame(step), 100);
+    });
   }
-);
  
-// Добавляем класс fade-up всем карточкам, секциям, FAQ
-document.querySelectorAll(
-  '.feature-card, .faq-item, .section-title, .section-label, .section-sub, .shop-unavailable'
-).forEach(el => {
-  el.classList.add('fade-up');
-  observer.observe(el);
-});
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) animateBars();
+    });
+  }, { threshold: 0.25 });
  
- 
-/* ===================== 5. САКУРНЫЕ ЛЕПЕСТКИ (ЧАСТИЦЫ) =====================
-   Создаём div-элементы с классом .sakura-petal,
-   которые падают сверху вниз с анимацией из CSS.
-*/
-function createPetals() {
-  const container = document.getElementById('particles');
-  const petalCount = 15; // Количество лепестков
- 
-  for (let i = 0; i < petalCount; i++) {
-    const petal = document.createElement('div');
-    petal.classList.add('sakura-petal');
- 
-    // Случайные параметры для каждого лепестка
-    const left     = Math.random() * 100;     // Позиция по горизонтали (%)
-    const size     = Math.random() * 8 + 6;   // Размер 6–14px
-    const duration = Math.random() * 8 + 6;   // Скорость падения 6–14с
-    const delay    = Math.random() * 10;       // Задержка старта 0–10с
- 
-    petal.style.cssText = `
-      left: ${left}%;
-      width: ${size}px;
-      height: ${size}px;
-      animation-duration: ${duration}s;
-      animation-delay: ${delay}s;
-    `;
- 
-    container.appendChild(petal);
-  }
-}
- 
-// Запускаем лепестки
-createPetals();
+  obs.observe(section);
+})();
  
  
-/* ===================== 6. НАВБАР: ТЕНЬ ПРИ СКРОЛЛЕ + МОБИЛЬНЫЙ БУРГЕР ===================== */
+/* ──────────────────────────────
+   7. FAQ ACCORDION
+────────────────────────────── */
+(function initFAQ() {
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
  
-const navbar = document.getElementById('navbar');
-const burger = document.getElementById('burger');
-const navLinks = document.querySelector('.nav-links');
+      // close siblings in same container
+      const siblings = item.parentElement.querySelectorAll('.faq-item');
+      siblings.forEach(s => s.classList.remove('open'));
  
-// Добавляем тень навбару при скролле вниз
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 20) {
-    navbar.style.boxShadow = '0 4px 30px rgba(255, 107, 157, 0.15)';
-  } else {
-    navbar.style.boxShadow = 'none';
-  }
-});
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+})();
  
-// Мобильный бургер: открываем/закрываем меню
-burger.addEventListener('click', () => {
-  navLinks.classList.toggle('open');
-  // Анимация бургера → крестик
-  burger.classList.toggle('active');
-});
  
-// Закрываем мобильное меню при клике на пункт
-navLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    burger.classList.remove('active');
+/* ──────────────────────────────
+   8. SMOOTH ANCHOR SCROLL
+────────────────────────────── */
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+  link.addEventListener('click', e => {
+    const target = document.querySelector(link.getAttribute('href'));
+    if (!target) return;
+    e.preventDefault();
+    const offset = 70; // nav height
+    const top    = target.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top, behavior: 'smooth' });
   });
 });
  
  
-/* ===================== 7. ФОРМА УВЕДОМЛЕНИЙ В МАГАЗИНЕ ===================== */
- 
-function handleNotify() {
-  const emailInput = document.getElementById('notifyEmail');
-  const successMsg = document.getElementById('notifySuccess');
-  const email = emailInput.value.trim();
- 
-  // Простая валидация email
-  if (!email || !email.includes('@') || !email.includes('.')) {
-    shakeInput('notifyEmail');
-    emailInput.style.borderColor = '#ff6b9d';
-    setTimeout(() => { emailInput.style.borderColor = ''; }, 2000);
-    return;
-  }
- 
-  // Успех: показываем сообщение
-  // В реальном сайте здесь будет fetch() запрос к бэкенду или сервису типа Mailchimp
-  emailInput.style.display = 'none';
-  successMsg.classList.add('show');
- 
-  // Кнопку тоже скрываем
-  emailInput.nextElementSibling.style.display = 'none';
-}
+/* ──────────────────────────────
+   9. PARALLAX ON HERO BLOBS
+────────────────────────────── */
+(function initParallax() {
+  const blobs = document.querySelectorAll('.blob');
+  window.addEventListener('scroll', () => {
+    const y = window.scrollY;
+    blobs.forEach((blob, i) => {
+      const speed = 0.08 + i * 0.04;
+      blob.style.transform = `translateY(${y * speed}px)`;
+    });
+  }, { passive: true });
+})();
  
  
-/* ===================== ДОПОЛНИТЕЛЬНО: плавный акцент при наведении на навигацию =====================
-   Подсвечиваем активный пункт меню в зависимости от позиции скролла
-*/
-const sections = document.querySelectorAll('section[id]');
- 
-window.addEventListener('scroll', () => {
-  let current = '';
- 
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop - 100;
-    if (window.scrollY >= sectionTop) {
-      current = section.getAttribute('id');
-    }
+/* ──────────────────────────────
+   10. ESP CARD HOVER GLOW CURSOR
+────────────────────────────── */
+(function initESPCards() {
+  document.querySelectorAll('.esp-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect   = card.getBoundingClientRect();
+      const x      = e.clientX - rect.left;
+      const y      = e.clientY - rect.top;
+      const cx     = rect.width  / 2;
+      const cy     = rect.height / 2;
+      const rotX   = ((y - cy) / cy) * 8;
+      const rotY   = ((x - cx) / cx) * -8;
+      card.style.transform = `perspective(600px) rotateX(${rotX}deg) rotateY(${rotY}deg) translateY(-6px) scale(1.03)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
   });
- 
-  document.querySelectorAll('.nav-links a').forEach(link => {
-    link.style.color = '';
-    if (link.getAttribute('href') === `#${current}`) {
-      link.style.color = 'var(--sakura)';
-    }
-  });
-}, { passive: true });
+})();
